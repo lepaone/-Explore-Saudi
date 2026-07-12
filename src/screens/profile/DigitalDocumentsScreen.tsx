@@ -182,7 +182,11 @@ export default function DigitalDocumentsScreen() {
                 {uploadedUri ? (
                   <View style={styles.uploadedWrap}>
                     {Platform.OS === 'web' ? (
-                      <Image source={{ uri: uploadedUri }} style={styles.uploadedImg} resizeMode="cover" />
+                      <Image
+                        source={{ uri: uploadedUri }}
+                        style={styles.uploadedImg}
+                        resizeMode="cover"
+                      />
                     ) : (
                       <View style={styles.uploadedMock}>
                         <Text style={styles.uploadedMockIcon}>🪪</Text>
@@ -190,11 +194,17 @@ export default function DigitalDocumentsScreen() {
                       </View>
                     )}
                     <View style={styles.uploadedActions}>
-                      <TouchableOpacity style={styles.replaceBtn} onPress={() => pickDocument(activeTab)}>
-                        <Text style={styles.replaceBtnText}>📷  Replace</Text>
+                      <TouchableOpacity
+                        style={styles.replaceBtn}
+                        onPress={() => pickDocument(activeTab)}
+                      >
+                        <Text style={styles.replaceBtnText}>📷 Replace</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.removeBtn} onPress={() => removeDocument(activeTab)}>
-                        <Text style={styles.removeBtnText}>🗑️  Remove</Text>
+                      <TouchableOpacity
+                        style={styles.removeBtn}
+                        onPress={() => removeDocument(activeTab)}
+                      >
+                        <Text style={styles.removeBtnText}>🗑️ Remove</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -217,7 +227,10 @@ export default function DigitalDocumentsScreen() {
                           Upload {activeTab === 'passport' ? 'Passport' : "Driver's License"}
                         </Text>
                         <Text style={styles.uploadSub}>
-                          Tap to {Platform.OS === 'web' ? 'choose a file' : 'take a photo or pick from gallery'}
+                          Tap to{' '}
+                          {Platform.OS === 'web'
+                            ? 'choose a file'
+                            : 'take a photo or pick from gallery'}
                         </Text>
                       </>
                     )}
@@ -266,12 +279,12 @@ export default function DigitalDocumentsScreen() {
             </View>
 
             {/* Status banner */}
-            <View style={[styles.statusBanner, isExpired ? styles.statusExpired : styles.statusValid]}>
+            <View
+              style={[styles.statusBanner, isExpired ? styles.statusExpired : styles.statusValid]}
+            >
               <Text style={styles.statusIcon}>{isExpired ? '⚠️' : '✅'}</Text>
               <Text style={styles.statusText}>
-                {isExpired
-                  ? 'This document has expired'
-                  : `Valid · ${daysLeft} days remaining`}
+                {isExpired ? 'This document has expired' : `Valid · ${daysLeft} days remaining`}
               </Text>
             </View>
 
@@ -285,7 +298,7 @@ export default function DigitalDocumentsScreen() {
             </View>
 
             <TouchableOpacity style={styles.shareBtn}>
-              <Text style={styles.shareBtnText}>📤  Share Document</Text>
+              <Text style={styles.shareBtnText}>📤 Share Document</Text>
             </TouchableOpacity>
           </>
         ) : (
@@ -312,8 +325,12 @@ function DetailRow({ label, value, isLast }: { label: string; value: string; isL
 
 const detailStyles = StyleSheet.create({
   row: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingVertical: spacing.sm, borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   label: { fontSize: typography.sizes.sm, color: colors.slate },
   value: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
@@ -322,8 +339,11 @@ const detailStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.pearl },
   header: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    paddingHorizontal: spacing.md, paddingVertical: spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
     backgroundColor: colors.white,
   },
   backBtn: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
@@ -331,9 +351,12 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   tabBar: { paddingHorizontal: spacing.md, paddingVertical: spacing.sm, gap: spacing.xs },
   tab: {
-    flexDirection: 'row', alignItems: 'center',
-    paddingHorizontal: spacing.md, paddingVertical: spacing.sm,
-    borderRadius: borderRadius.full ?? 100, backgroundColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.full ?? 100,
+    backgroundColor: colors.pearl,
     marginRight: spacing.xs,
   },
   tabActive: { backgroundColor: colors.charcoal },
@@ -345,67 +368,121 @@ const styles = StyleSheet.create({
   // Upload section
   uploadSection: { marginBottom: spacing.md },
   uploadBox: {
-    borderWidth: 2, borderStyle: 'dashed', borderColor: colors.primary,
-    borderRadius: borderRadius.lg, padding: spacing.xl,
-    alignItems: 'center', backgroundColor: colors.white,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: colors.primary,
+    borderRadius: borderRadius.lg,
+    padding: spacing.xl,
+    alignItems: 'center',
+    backgroundColor: colors.white,
   },
   uploadIcon: { fontSize: 40, marginBottom: spacing.sm },
-  uploadTitle: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.xs },
+  uploadTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.xs,
+  },
   uploadSub: { fontSize: typography.sizes.sm, color: colors.slate, textAlign: 'center' },
   uploadingText: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: spacing.sm },
   uploadedWrap: {
-    borderRadius: borderRadius.lg, overflow: 'hidden',
-    backgroundColor: colors.white, ...shadows.sm,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
+    backgroundColor: colors.white,
+    ...shadows.sm,
   },
   uploadedImg: { width: '100%', height: 180 },
   uploadedMock: {
-    height: 140, backgroundColor: '#e8f0fb',
-    alignItems: 'center', justifyContent: 'center',
+    height: 140,
+    backgroundColor: '#e8f0fb',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   uploadedMockIcon: { fontSize: 48, marginBottom: spacing.xs },
   uploadedMockText: { fontSize: typography.sizes.sm, color: colors.slate, fontWeight: '600' },
   uploadedActions: {
-    flexDirection: 'row', gap: spacing.sm,
+    flexDirection: 'row',
+    gap: spacing.sm,
     padding: spacing.sm,
   },
   replaceBtn: {
-    flex: 1, paddingVertical: spacing.sm,
-    borderRadius: borderRadius.md, borderWidth: 1.5, borderColor: colors.primary,
+    flex: 1,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    borderWidth: 1.5,
+    borderColor: colors.primary,
     alignItems: 'center',
   },
   replaceBtnText: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.primary },
   removeBtn: {
-    flex: 1, paddingVertical: spacing.sm,
-    borderRadius: borderRadius.md, borderWidth: 1.5, borderColor: colors.error,
+    flex: 1,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    borderWidth: 1.5,
+    borderColor: colors.error,
     alignItems: 'center',
   },
   removeBtnText: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.error },
 
   // Document card
   docCard: {
-    borderRadius: borderRadius.xl ?? 20, padding: spacing.lg,
-    marginBottom: spacing.md, ...shadows.lg,
+    borderRadius: borderRadius.xl ?? 20,
+    padding: spacing.lg,
+    marginBottom: spacing.md,
+    ...shadows.lg,
   },
-  docCardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: spacing.lg },
-  docCardType: { fontSize: typography.sizes.xs, fontWeight: '700', color: 'rgba(255,255,255,0.6)', letterSpacing: 1 },
-  docCardOwner: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.white, marginTop: 4 },
+  docCardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: spacing.lg,
+  },
+  docCardType: {
+    fontSize: typography.sizes.xs,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.6)',
+    letterSpacing: 1,
+  },
+  docCardOwner: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.white,
+    marginTop: 4,
+  },
   docCardIcon: { fontSize: 36 },
   docNumber: {
-    fontSize: typography.sizes.xl, fontWeight: '800', color: colors.white,
-    letterSpacing: 3, marginBottom: spacing.lg,
+    fontSize: typography.sizes.xl,
+    fontWeight: '800',
+    color: colors.white,
+    letterSpacing: 3,
+    marginBottom: spacing.lg,
   },
   docDates: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: spacing.lg },
-  docDateLabel: { fontSize: typography.sizes.xs, color: 'rgba(255,255,255,0.6)', fontWeight: '600', letterSpacing: 0.5 },
-  docDateVal: { fontSize: typography.sizes.sm, color: colors.white, fontWeight: '600', marginTop: 2 },
+  docDateLabel: {
+    fontSize: typography.sizes.xs,
+    color: 'rgba(255,255,255,0.6)',
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  docDateVal: {
+    fontSize: typography.sizes.sm,
+    color: colors.white,
+    fontWeight: '600',
+    marginTop: 2,
+  },
   qrBox: {
-    backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: borderRadius.md,
-    padding: spacing.md, alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    alignItems: 'center',
   },
   qrText: { fontSize: 22, color: colors.white, letterSpacing: 2 },
   qrSub: { fontSize: typography.sizes.xs, color: 'rgba(255,255,255,0.6)', marginTop: 6 },
   statusBanner: {
-    flexDirection: 'row', alignItems: 'center',
-    borderRadius: borderRadius.md, padding: spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: borderRadius.md,
+    padding: spacing.sm,
     marginBottom: spacing.md,
   },
   statusValid: { backgroundColor: '#e6f9f3' },
@@ -413,12 +490,18 @@ const styles = StyleSheet.create({
   statusIcon: { fontSize: 18, marginRight: spacing.sm },
   statusText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
   detailCard: {
-    backgroundColor: colors.white, borderRadius: borderRadius.lg,
-    padding: spacing.md, marginBottom: spacing.md, ...shadows.sm,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.md,
+    ...shadows.sm,
   },
   shareBtn: {
-    borderWidth: 1.5, borderColor: colors.sand, borderRadius: borderRadius.lg,
-    paddingVertical: 14, alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: colors.sand,
+    borderRadius: borderRadius.lg,
+    paddingVertical: 14,
+    alignItems: 'center',
   },
   shareBtnText: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.sand },
   empty: { alignItems: 'center', paddingVertical: spacing.xxl ?? 48 },

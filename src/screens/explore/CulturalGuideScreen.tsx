@@ -19,7 +19,9 @@ export default function CulturalGuideScreen() {
         <LinearGradient colors={[...gradients.sunsetGradient]} style={styles.hero}>
           <Text style={styles.heroIcon}>{'\uD83C\uDDF8\uD83C\uDDE6'}</Text>
           <Text style={styles.heroTitle}>Saudi Cultural Guide</Text>
-          <Text style={styles.heroSub}>Essential tips for a respectful and enriching visit to the Kingdom</Text>
+          <Text style={styles.heroSub}>
+            Essential tips for a respectful and enriching visit to the Kingdom
+          </Text>
         </LinearGradient>
 
         {/* Tips */}
@@ -49,14 +51,18 @@ export default function CulturalGuideScreen() {
                       <View style={styles.dosSection}>
                         <Text style={styles.dosTitle}>{'\u2705'} Do's</Text>
                         {tip.dos.map((d, i) => (
-                          <Text key={i} style={styles.dosItem}>{'\u2022'} {d}</Text>
+                          <Text key={i} style={styles.dosItem}>
+                            {'\u2022'} {d}
+                          </Text>
                         ))}
                       </View>
 
                       <View style={styles.dontsSection}>
                         <Text style={styles.dontsTitle}>{'\u274C'} Don'ts</Text>
                         {tip.donts.map((d, i) => (
-                          <Text key={i} style={styles.dontsItem}>{'\u2022'} {d}</Text>
+                          <Text key={i} style={styles.dontsItem}>
+                            {'\u2022'} {d}
+                          </Text>
                         ))}
                       </View>
                     </View>
@@ -76,12 +82,24 @@ export default function CulturalGuideScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   hero: {
-    margin: spacing.md, borderRadius: borderRadius.lg, padding: spacing.xl,
+    margin: spacing.md,
+    borderRadius: borderRadius.lg,
+    padding: spacing.xl,
     alignItems: 'center',
   },
   heroIcon: { fontSize: 48, marginBottom: spacing.sm },
-  heroTitle: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.white, textAlign: 'center' },
-  heroSub: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.8)', textAlign: 'center', marginTop: spacing.xs },
+  heroTitle: {
+    fontSize: typography.sizes.xl,
+    fontWeight: '700',
+    color: colors.white,
+    textAlign: 'center',
+  },
+  heroSub: {
+    fontSize: typography.sizes.sm,
+    color: 'rgba(255,255,255,0.8)',
+    textAlign: 'center',
+    marginTop: spacing.xs,
+  },
   section: { paddingHorizontal: spacing.md },
   tipCard: { marginBottom: spacing.sm, padding: spacing.md },
   tipHeader: { flexDirection: 'row', alignItems: 'center' },
@@ -89,12 +107,42 @@ const styles = StyleSheet.create({
   tipTitle: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   tipTitleAr: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   chevron: { fontSize: 12, color: colors.slate },
-  tipBody: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.pearl },
-  tipDesc: { fontSize: typography.sizes.sm, color: colors.slate, lineHeight: 20, marginBottom: spacing.md },
+  tipBody: {
+    marginTop: spacing.md,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
+  },
+  tipDesc: {
+    fontSize: typography.sizes.sm,
+    color: colors.slate,
+    lineHeight: 20,
+    marginBottom: spacing.md,
+  },
   dosSection: { marginBottom: spacing.md },
-  dosTitle: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.success, marginBottom: spacing.xs },
-  dosItem: { fontSize: typography.sizes.sm, color: colors.charcoal, lineHeight: 22, paddingLeft: spacing.sm },
+  dosTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.success,
+    marginBottom: spacing.xs,
+  },
+  dosItem: {
+    fontSize: typography.sizes.sm,
+    color: colors.charcoal,
+    lineHeight: 22,
+    paddingLeft: spacing.sm,
+  },
   dontsSection: {},
-  dontsTitle: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.error, marginBottom: spacing.xs },
-  dontsItem: { fontSize: typography.sizes.sm, color: colors.charcoal, lineHeight: 22, paddingLeft: spacing.sm },
+  dontsTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.error,
+    marginBottom: spacing.xs,
+  },
+  dontsItem: {
+    fontSize: typography.sizes.sm,
+    color: colors.charcoal,
+    lineHeight: 22,
+    paddingLeft: spacing.sm,
+  },
 });

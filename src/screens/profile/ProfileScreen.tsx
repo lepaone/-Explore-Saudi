@@ -7,14 +7,14 @@ import { colors, typography, spacing, borderRadius } from '../../constants/theme
 import { useAuthStore } from '../../store/useAuthStore';
 
 const MENU_ITEMS = [
-  { id: '0a', icon: '✏️', label: 'Edit Profile',       route: 'EditProfile' },
-  { id: '0b', icon: '📄', label: 'Digital Documents',  route: 'DigitalDocuments' },
-  { id: '1',  icon: '📋', label: 'My Bookings',        route: 'MyBookings' },
-  { id: '2',  icon: '🖼️', label: 'NFT Collection',     route: 'NFTCollection' },
-  { id: '3',  icon: '⭐', label: 'My Reviews',         route: 'Reviews' },
-  { id: '4',  icon: '📤', label: 'Share Experience',   route: 'ShareExperience' },
-  { id: '5',  icon: '📸', label: 'Photo Spots',        route: 'PhotoSpots' },
-  { id: '6',  icon: '⚙️', label: 'Settings',           route: 'Settings' },
+  { id: '0a', icon: '✏️', label: 'Edit Profile', route: 'EditProfile' },
+  { id: '0b', icon: '📄', label: 'Digital Documents', route: 'DigitalDocuments' },
+  { id: '1', icon: '📋', label: 'My Bookings', route: 'MyBookings' },
+  { id: '2', icon: '🖼️', label: 'NFT Collection', route: 'NFTCollection' },
+  { id: '3', icon: '⭐', label: 'My Reviews', route: 'Reviews' },
+  { id: '4', icon: '📤', label: 'Share Experience', route: 'ShareExperience' },
+  { id: '5', icon: '📸', label: 'Photo Spots', route: 'PhotoSpots' },
+  { id: '6', icon: '⚙️', label: 'Settings', route: 'Settings' },
 ];
 
 export default function ProfileScreen() {
@@ -33,7 +33,7 @@ export default function ProfileScreen() {
           <Text style={styles.email}>{user?.email ?? ''}</Text>
           {user?.visaType ? (
             <View style={styles.visaBadge}>
-              <Text style={styles.visaBadgeText}>✈️  {user.visaType}</Text>
+              <Text style={styles.visaBadgeText}>✈️ {user.visaType}</Text>
             </View>
           ) : null}
           <View style={styles.statsRow}>
@@ -59,7 +59,7 @@ export default function ProfileScreen() {
           style={styles.registerLink}
           onPress={() => navigation.navigate('Registration')}
         >
-          <Text style={styles.registerLinkText}>🆕  New user? Create Account →</Text>
+          <Text style={styles.registerLinkText}>🆕 New user? Create Account →</Text>
         </TouchableOpacity>
 
         {/* Menu Items */}
@@ -83,7 +83,11 @@ export default function ProfileScreen() {
           onPress={() => {
             Alert.alert('Log Out', 'Are you sure you want to log out?', [
               { text: 'Cancel', style: 'cancel' },
-              { text: 'Log Out', style: 'destructive', onPress: () => useAuthStore.getState().logout() },
+              {
+                text: 'Log Out',
+                style: 'destructive',
+                onPress: () => useAuthStore.getState().logout(),
+              },
             ]);
           }}
         >
@@ -100,21 +104,36 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.white },
   header: { alignItems: 'center', paddingVertical: spacing.xl, paddingHorizontal: spacing.md },
   avatar: {
-    width: 84, height: 84, borderRadius: 42,
-    alignItems: 'center', justifyContent: 'center',
+    width: 84,
+    height: 84,
+    borderRadius: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   avatarText: { fontSize: 34, fontWeight: '800', color: colors.white },
-  name: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal, marginTop: spacing.md },
+  name: {
+    fontSize: typography.sizes.xl,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.md,
+  },
   email: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
   visaBadge: {
-    marginTop: spacing.sm, backgroundColor: '#e8f5ee',
-    paddingHorizontal: spacing.md, paddingVertical: spacing.xs,
-    borderRadius: borderRadius.full, borderWidth: 1, borderColor: '#b7dfc8',
+    marginTop: spacing.sm,
+    backgroundColor: '#e8f5ee',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.full,
+    borderWidth: 1,
+    borderColor: '#b7dfc8',
   },
   visaBadgeText: { fontSize: typography.sizes.xs, fontWeight: '600', color: colors.primary },
   statsRow: {
-    flexDirection: 'row', marginTop: spacing.lg,
-    backgroundColor: colors.pearl, borderRadius: borderRadius.lg, padding: spacing.md,
+    flexDirection: 'row',
+    marginTop: spacing.lg,
+    backgroundColor: colors.pearl,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
     width: '100%',
   },
   stat: { flex: 1, alignItems: 'center' },
@@ -122,16 +141,23 @@ const styles = StyleSheet.create({
   statLabel: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   statDivider: { width: 1, backgroundColor: colors.white, marginHorizontal: spacing.sm },
   registerLink: {
-    marginHorizontal: spacing.md, marginBottom: spacing.sm,
-    backgroundColor: '#e8f5ee', borderRadius: borderRadius.lg,
-    padding: spacing.sm, alignItems: 'center',
-    borderWidth: 1, borderColor: '#b7dfc8',
+    marginHorizontal: spacing.md,
+    marginBottom: spacing.sm,
+    backgroundColor: '#e8f5ee',
+    borderRadius: borderRadius.lg,
+    padding: spacing.sm,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#b7dfc8',
   },
   registerLinkText: { fontSize: typography.sizes.sm, color: colors.primary, fontWeight: '600' },
   menu: { paddingHorizontal: spacing.md },
   menuItem: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   menuIcon: { fontSize: 22, marginRight: spacing.md },
   menuLabel: { flex: 1, fontSize: typography.sizes.md, color: colors.charcoal },

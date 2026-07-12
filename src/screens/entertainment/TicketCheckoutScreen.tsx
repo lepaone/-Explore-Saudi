@@ -57,13 +57,30 @@ export default function TicketCheckoutScreen() {
           <Text style={styles.successEvent}>{event?.name}</Text>
           <Text style={styles.successVenue}>{event?.venue}</Text>
           <Text style={styles.successDate}>{formatDate(event?.date ?? '')}</Text>
-          <Text style={styles.successTicket}>{ticket?.name} x{quantity}</Text>
-          <Text style={styles.successGuest}>{'\uD83D\uDC64'} {user?.name ?? 'Guest'}</Text>
-          <Text style={styles.successDeducted}>{'\uD83D\uDCB3'} {formatCurrency(totalPrice)} deducted from wallet</Text>
+          <Text style={styles.successTicket}>
+            {ticket?.name} x{quantity}
+          </Text>
+          <Text style={styles.successGuest}>
+            {'\uD83D\uDC64'} {user?.name ?? 'Guest'}
+          </Text>
+          <Text style={styles.successDeducted}>
+            {'\uD83D\uDCB3'} {formatCurrency(totalPrice)} deducted from wallet
+          </Text>
         </Card>
         <View style={styles.successButtons}>
-          <Button title="View My Tickets" onPress={() => navigation.getParent()?.getParent()?.navigate('WalletTab', { screen: 'MyTickets' })} fullWidth />
-          <Button title="Back to Events" onPress={() => navigation.navigate('Entertainment')} variant="outline" fullWidth />
+          <Button
+            title="View My Tickets"
+            onPress={() =>
+              navigation.getParent()?.getParent()?.navigate('WalletTab', { screen: 'MyTickets' })
+            }
+            fullWidth
+          />
+          <Button
+            title="Back to Events"
+            onPress={() => navigation.navigate('Entertainment')}
+            variant="outline"
+            fullWidth
+          />
         </View>
       </View>
     );
@@ -118,7 +135,9 @@ export default function TicketCheckoutScreen() {
         </Card>
 
         {balance < totalPrice && (
-          <Text style={styles.insufficientText}>Insufficient balance. Please top up your wallet.</Text>
+          <Text style={styles.insufficientText}>
+            Insufficient balance. Please top up your wallet.
+          </Text>
         )}
       </ScrollView>
 
@@ -139,46 +158,105 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md, paddingBottom: 120 },
   orderCard: { padding: spacing.md },
-  orderTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.md },
+  orderTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.md,
+  },
   orderRow: {
-    flexDirection: 'row', justifyContent: 'space-between',
-    paddingVertical: spacing.sm, borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   orderLabel: { fontSize: typography.sizes.sm, color: colors.slate },
   orderValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
   totalRow: { borderBottomWidth: 0, paddingTop: spacing.md },
   totalLabel: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   totalValue: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.sand },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.lg, marginBottom: spacing.sm },
-  paymentCard: {
-    flexDirection: 'row', alignItems: 'center', padding: spacing.md,
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.lg,
+    marginBottom: spacing.sm,
   },
-  walletBadge: { width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  paymentCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: spacing.md,
+  },
+  walletBadge: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   walletIcon: { fontSize: 22 },
   paymentInfo: { flex: 1, marginLeft: spacing.sm },
   paymentName: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   paymentBalance: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
   radioOuter: {
-    width: 22, height: 22, borderRadius: 11, borderWidth: 2,
-    borderColor: colors.sand, alignItems: 'center', justifyContent: 'center',
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 2,
+    borderColor: colors.sand,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   radioInner: { width: 12, height: 12, borderRadius: 6, backgroundColor: colors.sand },
   insufficientText: { fontSize: typography.sizes.sm, color: colors.error, marginTop: spacing.sm },
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    padding: spacing.md, paddingBottom: spacing.xl,
-    backgroundColor: colors.white, borderTopWidth: 1, borderTopColor: colors.pearl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
   },
-  successContainer: { flex: 1, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', padding: spacing.xl },
+  successContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.xl,
+  },
   successIcon: { fontSize: 64, marginBottom: spacing.md },
   successTitle: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   successSub: { fontSize: typography.sizes.md, color: colors.slate, marginTop: spacing.xs },
   successCard: { marginTop: spacing.lg, padding: spacing.lg, width: '100%', alignItems: 'center' },
-  successEvent: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, textAlign: 'center' },
+  successEvent: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    textAlign: 'center',
+  },
   successVenue: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
-  successDate: { fontSize: typography.sizes.sm, color: colors.sand, fontWeight: '600', marginTop: 4 },
+  successDate: {
+    fontSize: typography.sizes.sm,
+    color: colors.sand,
+    fontWeight: '600',
+    marginTop: 4,
+  },
   successTicket: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
-  successGuest: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal, marginTop: spacing.sm },
-  successDeducted: { fontSize: typography.sizes.sm, color: colors.sand, fontWeight: '600', marginTop: 4 },
+  successGuest: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '600',
+    color: colors.charcoal,
+    marginTop: spacing.sm,
+  },
+  successDeducted: {
+    fontSize: typography.sizes.sm,
+    color: colors.sand,
+    fontWeight: '600',
+    marginTop: 4,
+  },
   successButtons: { marginTop: spacing.xl, width: '100%', gap: spacing.sm },
 });

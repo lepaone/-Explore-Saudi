@@ -8,8 +8,12 @@ import { useWalletStore } from '../../store/useWalletStore';
 import { formatCurrency } from '../../utils/formatters';
 
 const CATEGORY_ICONS: Record<string, string> = {
-  dining: '🍽️', entertainment: '🎭', transport: '🚗', exchange: '💱',
-  'top-up': '💰', refund: '↩️',
+  dining: '🍽️',
+  entertainment: '🎭',
+  transport: '🚗',
+  exchange: '💱',
+  'top-up': '💰',
+  refund: '↩️',
 };
 
 export default function ExpenseTrackerScreen() {
@@ -83,22 +87,41 @@ const styles = StyleSheet.create({
   totalLabel: { fontSize: typography.sizes.sm, color: colors.slate },
   totalAmount: { fontSize: 36, fontWeight: '700', color: colors.charcoal, marginTop: spacing.xs },
   totalCount: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.md, marginTop: spacing.lg },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.md,
+    marginTop: spacing.lg,
+  },
   catRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.md },
   catIcon: { fontSize: 24, marginRight: spacing.sm },
   catInfo: { flex: 1 },
   catHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: spacing.xs },
-  catName: { fontSize: typography.sizes.sm, fontWeight: '500', color: colors.charcoal, textTransform: 'capitalize' },
+  catName: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '500',
+    color: colors.charcoal,
+    textTransform: 'capitalize',
+  },
   catAmount: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
   progressBg: { height: 6, backgroundColor: colors.pearl, borderRadius: 3, overflow: 'hidden' },
   progressFill: { height: '100%', backgroundColor: colors.sand, borderRadius: 3 },
   txnRow: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.sm,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   txnIcon: { fontSize: 20, marginRight: spacing.sm },
   txnInfo: { flex: 1 },
   txnDesc: { fontSize: typography.sizes.sm, fontWeight: '500', color: colors.charcoal },
-  txnCategory: { fontSize: typography.sizes.xs, color: colors.slate, textTransform: 'capitalize', marginTop: 2 },
+  txnCategory: {
+    fontSize: typography.sizes.xs,
+    color: colors.slate,
+    textTransform: 'capitalize',
+    marginTop: 2,
+  },
   txnAmount: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
 });

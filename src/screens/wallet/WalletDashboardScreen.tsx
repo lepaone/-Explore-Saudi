@@ -29,15 +29,36 @@ export default function WalletDashboardScreen() {
           <Text style={styles.balanceLabel}>Total Balance</Text>
           <Text style={styles.balanceAmount}>{formatCurrency(balance, currency)}</Text>
           <View style={styles.balanceActions}>
-            <TouchableOpacity style={styles.balanceBtn} onPress={() => Alert.alert('Top Up', 'SAR 1,000 has been added to your wallet.', [{ text: 'OK' }])}>
+            <TouchableOpacity
+              style={styles.balanceBtn}
+              onPress={() =>
+                Alert.alert('Top Up', 'SAR 1,000 has been added to your wallet.', [{ text: 'OK' }])
+              }
+            >
               <Text style={styles.balanceBtnIcon}>{'\u2795'}</Text>
               <Text style={styles.balanceBtnText}>Top Up</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.balanceBtn} onPress={() => Alert.alert('Send Money', 'Enter the recipient details to send money.', [{ text: 'OK' }])}>
+            <TouchableOpacity
+              style={styles.balanceBtn}
+              onPress={() =>
+                Alert.alert('Send Money', 'Enter the recipient details to send money.', [
+                  { text: 'OK' },
+                ])
+              }
+            >
               <Text style={styles.balanceBtnIcon}>{'\uD83D\uDCE4'}</Text>
               <Text style={styles.balanceBtnText}>Send</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.balanceBtn} onPress={() => Alert.alert('Receive Money', 'Share your wallet ID to receive funds:\nWallet: SA-EXPLORE-2026', [{ text: 'Copy', onPress: () => {} }, { text: 'OK' }])}>
+            <TouchableOpacity
+              style={styles.balanceBtn}
+              onPress={() =>
+                Alert.alert(
+                  'Receive Money',
+                  'Share your wallet ID to receive funds:\nWallet: SA-EXPLORE-2026',
+                  [{ text: 'Copy', onPress: () => {} }, { text: 'OK' }],
+                )
+              }
+            >
               <Text style={styles.balanceBtnIcon}>{'\uD83D\uDCE5'}</Text>
               <Text style={styles.balanceBtnText}>Receive</Text>
             </TouchableOpacity>
@@ -67,15 +88,22 @@ export default function WalletDashboardScreen() {
             <View key={txn.id} style={styles.txnRow}>
               <View style={styles.txnIconWrap}>
                 <Text style={styles.txnIcon}>
-                  {txn.type === 'topup' ? '\u2795' : txn.type === 'refund' ? '\u21A9\uFE0F' : '\uD83D\uDCB3'}
+                  {txn.type === 'topup'
+                    ? '\u2795'
+                    : txn.type === 'refund'
+                      ? '\u21A9\uFE0F'
+                      : '\uD83D\uDCB3'}
                 </Text>
               </View>
               <View style={styles.txnInfo}>
                 <Text style={styles.txnDesc}>{txn.description}</Text>
                 <Text style={styles.txnDate}>{getTimeAgo(txn.date)}</Text>
               </View>
-              <Text style={[styles.txnAmount, txn.amount > 0 ? styles.txnPositive : styles.txnNegative]}>
-                {txn.amount > 0 ? '+' : ''}{formatCurrency(txn.amount, txn.currency)}
+              <Text
+                style={[styles.txnAmount, txn.amount > 0 ? styles.txnPositive : styles.txnNegative]}
+              >
+                {txn.amount > 0 ? '+' : ''}
+                {formatCurrency(txn.amount, txn.currency)}
               </Text>
             </View>
           ))}
@@ -95,30 +123,55 @@ const styles = StyleSheet.create({
   balanceActions: { flexDirection: 'row', gap: spacing.xl, marginTop: spacing.lg },
   balanceBtn: { alignItems: 'center' },
   balanceBtnIcon: {
-    fontSize: 20, width: 48, height: 48, borderRadius: 24,
-    backgroundColor: 'rgba(255,255,255,0.15)', textAlign: 'center', lineHeight: 48, overflow: 'hidden',
+    fontSize: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    textAlign: 'center',
+    lineHeight: 48,
+    overflow: 'hidden',
   },
   balanceBtnText: { fontSize: typography.sizes.xs, color: 'rgba(255,255,255,0.8)', marginTop: 4 },
   actionsGrid: {
-    flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: spacing.md,
-    gap: spacing.sm, marginTop: spacing.sm,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: spacing.md,
+    gap: spacing.sm,
+    marginTop: spacing.sm,
   },
   actionItem: {
-    width: '30%', alignItems: 'center', paddingVertical: spacing.md,
-    backgroundColor: colors.pearl, borderRadius: borderRadius.lg,
+    width: '30%',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    backgroundColor: colors.pearl,
+    borderRadius: borderRadius.lg,
   },
   actionIconWrap: { marginBottom: spacing.xs },
   actionIcon: { fontSize: 28 },
   actionLabel: { fontSize: typography.sizes.sm, color: colors.charcoal, fontWeight: '500' },
   section: { paddingHorizontal: spacing.md, marginTop: spacing.lg },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.md },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.md,
+  },
   txnRow: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.sm + 2,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm + 2,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   txnIconWrap: {
-    width: 40, height: 40, borderRadius: 12, backgroundColor: colors.pearl,
-    alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm,
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: spacing.sm,
   },
   txnIcon: { fontSize: 18 },
   txnInfo: { flex: 1 },

@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/common/Header';
 import Button from '../../components/common/Button';
@@ -53,7 +61,11 @@ export default function PaymentScreen() {
         {['Scan QR Code', 'Enter Phone Number', 'Select from Contacts'].map((method) => (
           <TouchableOpacity key={method} style={styles.methodRow}>
             <Text style={styles.methodIcon}>
-              {method.includes('QR') ? '\uD83D\uDCF7' : method.includes('Phone') ? '\uD83D\uDCF1' : '\uD83D\uDC65'}
+              {method.includes('QR')
+                ? '\uD83D\uDCF7'
+                : method.includes('Phone')
+                  ? '\uD83D\uDCF1'
+                  : '\uD83D\uDC65'}
             </Text>
             <Text style={styles.methodText}>{method}</Text>
             <Text style={styles.methodArrow}>{'\u203A'}</Text>
@@ -78,7 +90,15 @@ export default function PaymentScreen() {
               Alert.alert(
                 'Payment Sent!',
                 `${formatCurrency(numAmount)} has been sent successfully.\n\n${formatCurrency(numAmount)} deducted from wallet.`,
-                [{ text: 'OK', onPress: () => { setAmount(''); navigation.goBack(); } }]
+                [
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      setAmount('');
+                      navigation.goBack();
+                    },
+                  },
+                ],
               );
             }}
             size="lg"
@@ -96,24 +116,49 @@ const styles = StyleSheet.create({
   scroll: { padding: spacing.md },
   balanceCard: { padding: spacing.md, alignItems: 'center', marginBottom: spacing.lg },
   balanceLabel: { fontSize: typography.sizes.sm, color: colors.slate },
-  balanceAmount: { fontSize: typography.sizes.xxl, fontWeight: '700', color: colors.charcoal, marginTop: 4 },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm, marginTop: spacing.lg },
+  balanceAmount: {
+    fontSize: typography.sizes.xxl,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: 4,
+  },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+    marginTop: spacing.lg,
+  },
   inputWrap: {
-    flexDirection: 'row', alignItems: 'center',
-    borderWidth: 2, borderColor: colors.pearl, borderRadius: borderRadius.lg,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: colors.pearl,
+    borderRadius: borderRadius.lg,
     padding: spacing.md,
   },
-  currency: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.slate, marginRight: spacing.sm },
+  currency: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.slate,
+    marginRight: spacing.sm,
+  },
   amountInput: { flex: 1, fontSize: 36, fontWeight: '700', color: colors.charcoal },
   quickAmounts: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.md },
   quickBtn: {
-    flex: 1, paddingVertical: spacing.sm, alignItems: 'center',
-    backgroundColor: colors.pearl, borderRadius: borderRadius.md,
+    flex: 1,
+    paddingVertical: spacing.sm,
+    alignItems: 'center',
+    backgroundColor: colors.pearl,
+    borderRadius: borderRadius.md,
   },
   quickText: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   methodRow: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   methodIcon: { fontSize: 22, marginRight: spacing.sm },
   methodText: { flex: 1, fontSize: typography.sizes.md, color: colors.charcoal },

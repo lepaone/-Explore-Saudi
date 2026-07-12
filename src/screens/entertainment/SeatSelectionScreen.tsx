@@ -28,7 +28,7 @@ export default function SeatSelectionScreen() {
   const toggleSeat = (seatId: string) => {
     if (TAKEN.has(seatId)) return;
     setSelectedSeats((prev) =>
-      prev.includes(seatId) ? prev.filter((s) => s !== seatId) : [...prev, seatId]
+      prev.includes(seatId) ? prev.filter((s) => s !== seatId) : [...prev, seatId],
     );
   };
 
@@ -77,11 +77,13 @@ export default function SeatSelectionScreen() {
                     onPress={() => toggleSeat(seatId)}
                     disabled={isTaken}
                   >
-                    <Text style={[
-                      styles.seatText,
-                      isTaken && styles.seatTextTaken,
-                      isSelected && styles.seatTextSelected,
-                    ]}>
+                    <Text
+                      style={[
+                        styles.seatText,
+                        isTaken && styles.seatTextTaken,
+                        isSelected && styles.seatTextSelected,
+                      ]}
+                    >
                       {i + 1}
                     </Text>
                   </TouchableOpacity>
@@ -105,11 +107,13 @@ export default function SeatSelectionScreen() {
         <View style={styles.bottomBar}>
           <Button
             title={`Continue with ${selectedSeats.length} seat(s)`}
-            onPress={() => navigation.navigate('TicketCheckout', {
-              eventId: route.params?.eventId,
-              ticketTypeId: 'custom',
-              quantity: selectedSeats.length,
-            })}
+            onPress={() =>
+              navigation.navigate('TicketCheckout', {
+                eventId: route.params?.eventId,
+                ticketTypeId: 'custom',
+                quantity: selectedSeats.length,
+              })
+            }
             size="lg"
             fullWidth
           />
@@ -123,21 +127,44 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md, paddingBottom: 120 },
   stage: {
-    backgroundColor: colors.charcoal, borderRadius: borderRadius.md,
-    paddingVertical: spacing.sm, alignItems: 'center', marginBottom: spacing.lg,
+    backgroundColor: colors.charcoal,
+    borderRadius: borderRadius.md,
+    paddingVertical: spacing.sm,
+    alignItems: 'center',
+    marginBottom: spacing.lg,
     marginHorizontal: spacing.xl,
   },
-  stageText: { color: colors.white, fontWeight: '700', letterSpacing: 4, fontSize: typography.sizes.sm },
-  legend: { flexDirection: 'row', justifyContent: 'center', gap: spacing.lg, marginBottom: spacing.lg },
+  stageText: {
+    color: colors.white,
+    fontWeight: '700',
+    letterSpacing: 4,
+    fontSize: typography.sizes.sm,
+  },
+  legend: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.lg,
+    marginBottom: spacing.lg,
+  },
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   legendDot: { width: 16, height: 16, borderRadius: 4 },
   legendText: { fontSize: typography.sizes.xs, color: colors.slate },
   seatsContainer: { alignItems: 'center' },
   seatRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs },
-  rowLabel: { width: 20, fontSize: typography.sizes.xs, color: colors.slate, fontWeight: '600', textAlign: 'center' },
+  rowLabel: {
+    width: 20,
+    fontSize: typography.sizes.xs,
+    color: colors.slate,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
   seat: {
-    width: 28, height: 28, borderRadius: 6,
-    backgroundColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 28,
+    height: 28,
+    borderRadius: 6,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginHorizontal: 2,
   },
   seatTaken: { backgroundColor: colors.slate },
@@ -146,14 +173,27 @@ const styles = StyleSheet.create({
   seatTextTaken: { color: 'rgba(255,255,255,0.5)' },
   seatTextSelected: { color: colors.white },
   summary: {
-    marginTop: spacing.lg, padding: spacing.md,
-    backgroundColor: colors.pearl, borderRadius: borderRadius.md,
+    marginTop: spacing.lg,
+    padding: spacing.md,
+    backgroundColor: colors.pearl,
+    borderRadius: borderRadius.md,
   },
   summaryLabel: { fontSize: typography.sizes.sm, color: colors.charcoal },
-  summaryCount: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.sand, marginTop: 4 },
+  summaryCount: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.sand,
+    marginTop: 4,
+  },
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    padding: spacing.md, paddingBottom: spacing.xl,
-    backgroundColor: colors.white, borderTopWidth: 1, borderTopColor: colors.pearl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
   },
 });

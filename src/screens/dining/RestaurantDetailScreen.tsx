@@ -15,7 +15,12 @@ export default function RestaurantDetailScreen() {
   const route = useRoute<any>();
   const restaurant = restaurants.find((r) => r.id === route.params?.id);
 
-  if (!restaurant) return <View style={styles.center}><Text>Restaurant not found</Text></View>;
+  if (!restaurant)
+    return (
+      <View style={styles.center}>
+        <Text>Restaurant not found</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
@@ -32,11 +37,15 @@ export default function RestaurantDetailScreen() {
               <Text style={styles.nameAr}>{restaurant.nameAr}</Text>
             </View>
             {restaurant.isOpen && (
-              <View style={styles.openBadge}><Text style={styles.openText}>Open</Text></View>
+              <View style={styles.openBadge}>
+                <Text style={styles.openText}>Open</Text>
+              </View>
             )}
           </View>
 
-          <Text style={styles.cuisine}>{restaurant.cuisine} - {restaurant.city}</Text>
+          <Text style={styles.cuisine}>
+            {restaurant.cuisine} - {restaurant.city}
+          </Text>
 
           <View style={styles.metaRow}>
             <RatingStars rating={restaurant.rating} showCount count={restaurant.reviewCount} />
@@ -72,10 +81,17 @@ export default function RestaurantDetailScreen() {
             {restaurant.menuHighlights.map((item, idx) => (
               <Card key={idx} variant="outlined" style={styles.menuCard}>
                 <View style={styles.menuRow}>
-                  <Image source={{ uri: item.image }} style={styles.menuImage} contentFit="cover" transition={200} />
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.menuImage}
+                    contentFit="cover"
+                    transition={200}
+                  />
                   <View style={styles.menuInfo}>
                     <Text style={styles.menuName}>{item.name}</Text>
-                    <Text style={styles.menuDesc} numberOfLines={2}>{item.description}</Text>
+                    <Text style={styles.menuDesc} numberOfLines={2}>
+                      {item.description}
+                    </Text>
                     <Text style={styles.menuPrice}>{formatCurrency(item.price)}</Text>
                   </View>
                 </View>
@@ -103,9 +119,15 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   backBtn: {
-    position: 'absolute', top: 50, left: spacing.md,
-    width: 40, height: 40, borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.9)', alignItems: 'center', justifyContent: 'center',
+    position: 'absolute',
+    top: 50,
+    left: spacing.md,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.small,
   },
   backIcon: { fontSize: 20, color: colors.charcoal },
@@ -113,22 +135,47 @@ const styles = StyleSheet.create({
   titleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   name: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   nameAr: { fontSize: typography.sizes.md, color: colors.slate, marginTop: 4 },
-  openBadge: { backgroundColor: colors.success, paddingVertical: 4, paddingHorizontal: spacing.sm, borderRadius: borderRadius.sm },
+  openBadge: {
+    backgroundColor: colors.success,
+    paddingVertical: 4,
+    paddingHorizontal: spacing.sm,
+    borderRadius: borderRadius.sm,
+  },
   openText: { color: colors.white, fontWeight: '600', fontSize: typography.sizes.xs },
   cuisine: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: spacing.sm },
-  metaRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: spacing.sm },
+  metaRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: spacing.sm,
+  },
   priceRange: { fontSize: typography.sizes.lg, color: colors.sand, fontWeight: '700' },
   infoRow: {
-    flexDirection: 'row', gap: spacing.lg, marginTop: spacing.md,
-    paddingVertical: spacing.md, borderTopWidth: 1, borderBottomWidth: 1, borderColor: colors.pearl,
+    flexDirection: 'row',
+    gap: spacing.lg,
+    marginTop: spacing.md,
+    paddingVertical: spacing.md,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: colors.pearl,
   },
   infoItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   infoIcon: { fontSize: 18 },
   infoText: { fontSize: typography.sizes.sm, color: colors.slate },
   section: { marginTop: spacing.lg },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+  },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
-  tag: { backgroundColor: colors.pearl, paddingVertical: spacing.xs + 2, paddingHorizontal: spacing.md, borderRadius: borderRadius.full },
+  tag: {
+    backgroundColor: colors.pearl,
+    paddingVertical: spacing.xs + 2,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+  },
   tagText: { fontSize: typography.sizes.sm, color: colors.charcoal },
   menuCard: { marginBottom: spacing.sm, padding: spacing.sm },
   menuRow: { flexDirection: 'row' },
@@ -138,8 +185,14 @@ const styles = StyleSheet.create({
   menuDesc: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   menuPrice: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.sand, marginTop: 4 },
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    padding: spacing.md, paddingBottom: spacing.xl,
-    backgroundColor: colors.white, borderTopWidth: 1, borderTopColor: colors.pearl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
   },
 });

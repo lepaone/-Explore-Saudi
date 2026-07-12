@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import {
-  View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert,
-} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Header from '../../components/common/Header';
@@ -17,8 +15,14 @@ import { formatCurrency } from '../../utils/formatters';
 
 const GUEST_COUNTS = [1, 2, 3, 4, 5, 6];
 const SPECIAL_REQUESTS = [
-  'Early Check-in', 'Late Check-out', 'Extra Bed', 'Airport Transfer',
-  'High Floor', 'Non-Smoking', 'Quiet Room', 'Baby Crib',
+  'Early Check-in',
+  'Late Check-out',
+  'Extra Bed',
+  'Airport Transfer',
+  'High Floor',
+  'Non-Smoking',
+  'Quiet Room',
+  'Baby Crib',
 ];
 
 // Generate date options for the next 30 days
@@ -28,7 +32,11 @@ function getDateOptions(startOffset = 0, count = 14): { label: string; value: st
     const d = new Date();
     d.setDate(d.getDate() + i);
     const value = d.toISOString().split('T')[0];
-    const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', weekday: 'short' });
+    const label = d.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      weekday: 'short',
+    });
     options.push({ label, value });
   }
   return options;
@@ -69,7 +77,7 @@ export default function HotelReservationScreen() {
 
   const toggleRequest = (req: string) => {
     setSelectedRequests((prev) =>
-      prev.includes(req) ? prev.filter((r) => r !== req) : [...prev, req]
+      prev.includes(req) ? prev.filter((r) => r !== req) : [...prev, req],
     );
   };
 
@@ -78,7 +86,7 @@ export default function HotelReservationScreen() {
       Alert.alert(
         'Insufficient Balance',
         `You need ${formatCurrency(totalPrice)} but your balance is ${formatCurrency(balance)}.\n\nPlease top up your wallet first.`,
-        [{ text: 'OK' }]
+        [{ text: 'OK' }],
       );
       return;
     }
@@ -115,8 +123,12 @@ export default function HotelReservationScreen() {
   // Generate a room number based on special requests (floor preference)
   const [assignedRoom, setAssignedRoom] = useState('');
   const generatedRoom = useMemo(() => {
-    const floor = selectedRequests.includes('High Floor') ? Math.floor(8 + Math.random() * 5) : Math.floor(2 + Math.random() * 6);
-    const unit = Math.floor(1 + Math.random() * 20).toString().padStart(2, '0');
+    const floor = selectedRequests.includes('High Floor')
+      ? Math.floor(8 + Math.random() * 5)
+      : Math.floor(2 + Math.random() * 6);
+    const unit = Math.floor(1 + Math.random() * 20)
+      .toString()
+      .padStart(2, '0');
     return `${floor}${unit}`;
   }, [selectedRequests]);
 
@@ -137,10 +149,18 @@ export default function HotelReservationScreen() {
         <Card variant="elevated" style={styles.successCard}>
           <Text style={styles.successHotel}>{hotel.name}</Text>
           <Text style={styles.successDetail}>👤 {user?.name ?? 'Guest'}</Text>
-          <Text style={styles.successDetail}>🏨 {roomName} • Room {assignedRoom}</Text>
-          <Text style={styles.successDetail}>📅 {checkInDate} → {checkOutDate}</Text>
-          <Text style={styles.successDetail}>🌙 {nights} night{nights > 1 ? 's' : ''}</Text>
-          <Text style={styles.successDetail}>👥 {guests} guest{guests > 1 ? 's' : ''}</Text>
+          <Text style={styles.successDetail}>
+            🏨 {roomName} • Room {assignedRoom}
+          </Text>
+          <Text style={styles.successDetail}>
+            📅 {checkInDate} → {checkOutDate}
+          </Text>
+          <Text style={styles.successDetail}>
+            🌙 {nights} night{nights > 1 ? 's' : ''}
+          </Text>
+          <Text style={styles.successDetail}>
+            👥 {guests} guest{guests > 1 ? 's' : ''}
+          </Text>
           {selectedRequests.length > 0 && (
             <Text style={styles.successDetail}>✨ {selectedRequests.join(', ')}</Text>
           )}
@@ -151,15 +171,22 @@ export default function HotelReservationScreen() {
         <View style={styles.successButtons}>
           <Button
             title="🏨 Digital Check-In"
-            onPress={() => navigation.navigate('DigitalCheckIn', {
-              hotelName: hotel.name,
-              roomNumber: assignedRoom,
-              checkIn: checkInDate,
-              checkOut: checkOutDate,
-            })}
+            onPress={() =>
+              navigation.navigate('DigitalCheckIn', {
+                hotelName: hotel.name,
+                roomNumber: assignedRoom,
+                checkIn: checkInDate,
+                checkOut: checkOutDate,
+              })
+            }
             fullWidth
           />
-          <Button title="Back to Hotel" onPress={() => navigation.navigate('HotelDetail', { id: hotel.id })} variant="outline" fullWidth />
+          <Button
+            title="Back to Hotel"
+            onPress={() => navigation.navigate('HotelDetail', { id: hotel.id })}
+            variant="outline"
+            fullWidth
+          />
         </View>
       </View>
     );
@@ -169,7 +196,6 @@ export default function HotelReservationScreen() {
     <View style={styles.container}>
       <Header title="Reserve Hotel" showBack onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-
         {/* Hotel & Room Summary */}
         <Card variant="outlined" style={styles.summaryCard}>
           <View style={styles.summaryRow}>
@@ -178,7 +204,9 @@ export default function HotelReservationScreen() {
               <Text style={styles.summarySub}>📍 {hotel.city}</Text>
               <View style={styles.summaryStars}>
                 {Array.from({ length: hotel.stars }, (_, i) => (
-                  <Text key={i} style={styles.summaryStar}>{'\u2605'}</Text>
+                  <Text key={i} style={styles.summaryStar}>
+                    {'\u2605'}
+                  </Text>
                 ))}
               </View>
             </View>
@@ -207,7 +235,9 @@ export default function HotelReservationScreen() {
                   if (checkOutDate && checkOutDate <= d.value) setCheckOutDate(null);
                 }}
               >
-                <Text style={[styles.dateText, checkInDate === d.value && styles.dateTextActive]}>{d.label}</Text>
+                <Text style={[styles.dateText, checkInDate === d.value && styles.dateTextActive]}>
+                  {d.label}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -223,7 +253,9 @@ export default function HotelReservationScreen() {
                 style={[styles.dateChip, checkOutDate === d.value && styles.dateChipActive]}
                 onPress={() => setCheckOutDate(d.value)}
               >
-                <Text style={[styles.dateText, checkOutDate === d.value && styles.dateTextActive]}>{d.label}</Text>
+                <Text style={[styles.dateText, checkOutDate === d.value && styles.dateTextActive]}>
+                  {d.label}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -239,7 +271,9 @@ export default function HotelReservationScreen() {
                 style={[styles.guestBtn, guests === size && styles.guestBtnActive]}
                 onPress={() => setGuests(size)}
               >
-                <Text style={[styles.guestText, guests === size && styles.guestTextActive]}>{size}</Text>
+                <Text style={[styles.guestText, guests === size && styles.guestTextActive]}>
+                  {size}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -251,10 +285,20 @@ export default function HotelReservationScreen() {
           {SPECIAL_REQUESTS.map((req) => (
             <TouchableOpacity
               key={req}
-              style={[styles.requestChip, selectedRequests.includes(req) && styles.requestChipActive]}
+              style={[
+                styles.requestChip,
+                selectedRequests.includes(req) && styles.requestChipActive,
+              ]}
               onPress={() => toggleRequest(req)}
             >
-              <Text style={[styles.requestText, selectedRequests.includes(req) && styles.requestTextActive]}>{req}</Text>
+              <Text
+                style={[
+                  styles.requestText,
+                  selectedRequests.includes(req) && styles.requestTextActive,
+                ]}
+              >
+                {req}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -264,7 +308,9 @@ export default function HotelReservationScreen() {
           <Card variant="elevated" style={styles.priceCard}>
             <Text style={styles.priceTitle}>💰 Price Breakdown</Text>
             <View style={styles.priceRow}>
-              <Text style={styles.priceLabel}>{formatCurrency(pricePerNight)} × {nights} night{nights > 1 ? 's' : ''}</Text>
+              <Text style={styles.priceLabel}>
+                {formatCurrency(pricePerNight)} × {nights} night{nights > 1 ? 's' : ''}
+              </Text>
               <Text style={styles.priceValue}>{formatCurrency(totalPrice)}</Text>
             </View>
             <View style={styles.priceDivider} />
@@ -289,7 +335,9 @@ export default function HotelReservationScreen() {
         <View>
           {nights > 0 ? (
             <>
-              <Text style={styles.bottomNights}>{nights} night{nights > 1 ? 's' : ''}</Text>
+              <Text style={styles.bottomNights}>
+                {nights} night{nights > 1 ? 's' : ''}
+              </Text>
               <Text style={styles.bottomTotal}>{formatCurrency(totalPrice)}</Text>
             </>
           ) : (
@@ -323,23 +371,33 @@ const styles = StyleSheet.create({
   summaryPriceWrap: { alignItems: 'flex-end' },
   summaryPerNight: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   roomBadge: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    marginTop: spacing.sm, paddingTop: spacing.sm, borderTopWidth: 1, borderTopColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: spacing.sm,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
   },
   roomBadgeText: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   roomCapacity: { fontSize: typography.sizes.xs, color: colors.slate },
 
   // Section title
   sectionTitle: {
-    fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal,
-    marginBottom: spacing.sm, marginTop: spacing.lg,
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+    marginTop: spacing.lg,
   },
 
   // Date selection
   dateRow: { flexDirection: 'row', gap: spacing.sm, paddingBottom: spacing.xs },
   dateChip: {
-    paddingVertical: spacing.sm, paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.md, backgroundColor: colors.pearl,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.pearl,
   },
   dateChipActive: { backgroundColor: colors.sand },
   dateText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
@@ -348,8 +406,12 @@ const styles = StyleSheet.create({
   // Guest count
   guestRow: { flexDirection: 'row', gap: spacing.sm },
   guestBtn: {
-    width: 48, height: 48, borderRadius: 24,
-    backgroundColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   guestBtnActive: { backgroundColor: colors.sand },
   guestText: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
@@ -358,8 +420,11 @@ const styles = StyleSheet.create({
   // Special requests
   requestGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   requestChip: {
-    paddingVertical: spacing.xs + 4, paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.full, borderWidth: 1, borderColor: colors.pearl,
+    paddingVertical: spacing.xs + 4,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+    borderWidth: 1,
+    borderColor: colors.pearl,
   },
   requestChipActive: { backgroundColor: colors.sand, borderColor: colors.sand },
   requestText: { fontSize: typography.sizes.sm, color: colors.slate },
@@ -367,7 +432,12 @@ const styles = StyleSheet.create({
 
   // Price card
   priceCard: { padding: spacing.md, marginTop: spacing.lg },
-  priceTitle: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm },
+  priceTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+  },
   priceRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: spacing.xs },
   priceLabel: { fontSize: typography.sizes.sm, color: colors.slate },
   priceValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
@@ -379,24 +449,54 @@ const styles = StyleSheet.create({
 
   // Bottom bar
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    backgroundColor: colors.white, padding: spacing.md, paddingBottom: spacing.xl,
-    borderTopWidth: 1, borderTopColor: colors.pearl, ...shadows.large,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
+    ...shadows.large,
   },
   bottomNights: { fontSize: typography.sizes.xs, color: colors.slate },
   bottomTotal: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   bottomPrompt: { fontSize: typography.sizes.sm, color: colors.slate },
 
   // Success screen
-  successContainer: { flex: 1, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', padding: spacing.xl },
+  successContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.xl,
+  },
   successIcon: { fontSize: 64, marginBottom: spacing.md },
   successTitle: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   successCard: { marginTop: spacing.lg, padding: spacing.lg, width: '100%', alignItems: 'center' },
   successHotel: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   successDetail: { fontSize: typography.sizes.md, color: colors.slate, marginTop: spacing.xs },
-  successDivider: { height: 1, backgroundColor: colors.pearl, width: '100%', marginVertical: spacing.sm },
-  successCode: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.primary, marginTop: spacing.xs },
-  successTotal: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.xs },
+  successDivider: {
+    height: 1,
+    backgroundColor: colors.pearl,
+    width: '100%',
+    marginVertical: spacing.sm,
+  },
+  successCode: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.primary,
+    marginTop: spacing.xs,
+  },
+  successTotal: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.xs,
+  },
   successButtons: { marginTop: spacing.xl, width: '100%', gap: spacing.sm },
 });

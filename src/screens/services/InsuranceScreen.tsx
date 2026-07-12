@@ -12,18 +12,40 @@ import { formatCurrency } from '../../utils/formatters';
 
 const PLANS = [
   {
-    id: '1', name: 'Basic Cover', price: 75, period: '/ trip',
+    id: '1',
+    name: 'Basic Cover',
+    price: 75,
+    period: '/ trip',
     features: ['Emergency medical up to SAR 50,000', 'Trip cancellation', '24/7 helpline'],
     recommended: false,
   },
   {
-    id: '2', name: 'Premium Cover', price: 150, period: '/ trip',
-    features: ['Emergency medical up to SAR 200,000', 'Trip cancellation & delay', 'Lost baggage up to SAR 5,000', 'Adventure sports cover', '24/7 helpline + concierge'],
+    id: '2',
+    name: 'Premium Cover',
+    price: 150,
+    period: '/ trip',
+    features: [
+      'Emergency medical up to SAR 200,000',
+      'Trip cancellation & delay',
+      'Lost baggage up to SAR 5,000',
+      'Adventure sports cover',
+      '24/7 helpline + concierge',
+    ],
     recommended: true,
   },
   {
-    id: '3', name: 'Family Cover', price: 250, period: '/ trip',
-    features: ['Covers up to 4 family members', 'Emergency medical up to SAR 500,000', 'Full trip protection', 'Lost baggage & personal items', 'Adventure & extreme sports', 'Priority 24/7 assistance'],
+    id: '3',
+    name: 'Family Cover',
+    price: 250,
+    period: '/ trip',
+    features: [
+      'Covers up to 4 family members',
+      'Emergency medical up to SAR 500,000',
+      'Full trip protection',
+      'Lost baggage & personal items',
+      'Adventure & extreme sports',
+      'Priority 24/7 assistance',
+    ],
     recommended: false,
   },
 ];
@@ -62,14 +84,20 @@ export default function InsuranceScreen() {
               <Text style={styles.planPeriod}>{plan.period}</Text>
             </View>
             {plan.features.map((f, i) => (
-              <Text key={i} style={styles.feature}>{'\u2713'} {f}</Text>
+              <Text key={i} style={styles.feature}>
+                {'\u2713'} {f}
+              </Text>
             ))}
             <View style={styles.btnWrap}>
               <Button
                 title={selectedPlan === plan.id ? 'Selected' : 'Select Plan'}
                 onPress={() => {
                   if (balance < plan.price) {
-                    Alert.alert('Insufficient Balance', `You need ${formatCurrency(plan.price)} but your balance is ${formatCurrency(balance)}.\n\nPlease top up your wallet first.`, [{ text: 'OK' }]);
+                    Alert.alert(
+                      'Insufficient Balance',
+                      `You need ${formatCurrency(plan.price)} but your balance is ${formatCurrency(balance)}.\n\nPlease top up your wallet first.`,
+                      [{ text: 'OK' }],
+                    );
                     return;
                   }
                   addTransaction({
@@ -86,7 +114,7 @@ export default function InsuranceScreen() {
                   Alert.alert(
                     'Insurance Purchased!',
                     `${user?.name ?? 'Guest'} — your ${plan.name} plan is confirmed.\n\nPrice: ${formatCurrency(plan.price)} ${plan.period}\n${formatCurrency(plan.price)} deducted from wallet.\n\nCoverage will begin upon your arrival in Saudi Arabia.`,
-                    [{ text: 'OK' }]
+                    [{ text: 'OK' }],
                   );
                 }}
                 variant={plan.recommended ? 'primary' : 'outline'}
@@ -105,18 +133,31 @@ export default function InsuranceScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md },
-  infoCard: { flexDirection: 'row', padding: spacing.md, marginBottom: spacing.lg, alignItems: 'center' },
+  infoCard: {
+    flexDirection: 'row',
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+    alignItems: 'center',
+  },
   infoIcon: { fontSize: 24, marginRight: spacing.sm },
   infoText: { flex: 1, fontSize: typography.sizes.sm, color: colors.slate, lineHeight: 20 },
   planCard: { padding: spacing.lg, marginBottom: spacing.md },
   planCardRecommended: { borderColor: colors.sand, borderWidth: 2 },
   recommendBadge: {
-    alignSelf: 'flex-start', paddingVertical: spacing.xs, paddingHorizontal: spacing.sm,
-    borderRadius: borderRadius.sm, marginBottom: spacing.sm,
+    alignSelf: 'flex-start',
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
+    borderRadius: borderRadius.sm,
+    marginBottom: spacing.sm,
   },
   recommendText: { fontSize: typography.sizes.xs, fontWeight: '700', color: colors.white },
   planName: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
-  priceRow: { flexDirection: 'row', alignItems: 'baseline', gap: spacing.xs, marginTop: spacing.xs },
+  priceRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: spacing.xs,
+    marginTop: spacing.xs,
+  },
   planPrice: { fontSize: typography.sizes.xxl, fontWeight: '700', color: colors.sand },
   planPeriod: { fontSize: typography.sizes.sm, color: colors.slate },
   feature: { fontSize: typography.sizes.sm, color: colors.charcoal, lineHeight: 24, marginTop: 2 },

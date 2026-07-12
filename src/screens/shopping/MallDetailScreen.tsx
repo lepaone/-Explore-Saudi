@@ -12,7 +12,12 @@ export default function MallDetailScreen() {
   const route = useRoute<any>();
   const mall = malls.find((m) => m.id === route.params?.id);
 
-  if (!mall) return <View style={styles.center}><Text>Mall not found</Text></View>;
+  if (!mall)
+    return (
+      <View style={styles.center}>
+        <Text>Mall not found</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
@@ -27,9 +32,15 @@ export default function MallDetailScreen() {
           <Text style={styles.nameAr}>{mall.nameAr}</Text>
 
           <View style={styles.metaRow}>
-            <Text style={styles.metaItem}>{'\uD83D\uDCCD'} {mall.city}</Text>
-            <Text style={styles.metaItem}>{'\uD83D\uDD52'} {mall.openingHours}</Text>
-            <Text style={styles.metaItem}>{'\uD83C\uDFEA'} {mall.storeCount}+ stores</Text>
+            <Text style={styles.metaItem}>
+              {'\uD83D\uDCCD'} {mall.city}
+            </Text>
+            <Text style={styles.metaItem}>
+              {'\uD83D\uDD52'} {mall.openingHours}
+            </Text>
+            <Text style={styles.metaItem}>
+              {'\uD83C\uDFEA'} {mall.storeCount}+ stores
+            </Text>
           </View>
 
           <Text style={styles.description}>{mall.description}</Text>
@@ -65,7 +76,9 @@ export default function MallDetailScreen() {
             <Text style={styles.locationIcon}>{'\uD83D\uDDFA\uFE0F'}</Text>
             <View>
               <Text style={styles.locationName}>{mall.city}, Saudi Arabia</Text>
-              <Text style={styles.locationCoords}>{mall.latitude.toFixed(4)}, {mall.longitude.toFixed(4)}</Text>
+              <Text style={styles.locationCoords}>
+                {mall.latitude.toFixed(4)}, {mall.longitude.toFixed(4)}
+              </Text>
             </View>
           </Card>
 
@@ -80,9 +93,15 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   backBtn: {
-    position: 'absolute', top: 50, left: spacing.md,
-    width: 40, height: 40, borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.9)', alignItems: 'center', justifyContent: 'center',
+    position: 'absolute',
+    top: 50,
+    left: spacing.md,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.small,
   },
   backIcon: { fontSize: 20, color: colors.charcoal },
@@ -91,20 +110,46 @@ const styles = StyleSheet.create({
   nameAr: { fontSize: typography.sizes.md, color: colors.slate, marginTop: 4 },
   metaRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md, marginTop: spacing.md },
   metaItem: { fontSize: typography.sizes.sm, color: colors.slate },
-  description: { fontSize: typography.sizes.md, color: colors.slate, lineHeight: 24, marginTop: spacing.md },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.lg, marginBottom: spacing.sm },
+  description: {
+    fontSize: typography.sizes.md,
+    color: colors.slate,
+    lineHeight: 24,
+    marginTop: spacing.md,
+  },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.lg,
+    marginBottom: spacing.sm,
+  },
   featureGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   featureTag: {
-    backgroundColor: colors.pearl, paddingVertical: spacing.xs + 2, paddingHorizontal: spacing.md,
+    backgroundColor: colors.pearl,
+    paddingVertical: spacing.xs + 2,
+    paddingHorizontal: spacing.md,
     borderRadius: borderRadius.full,
   },
   featureText: { fontSize: typography.sizes.sm, color: colors.charcoal },
   promoCard: { padding: spacing.md, marginBottom: spacing.sm },
-  promoTitle: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal, marginTop: spacing.sm },
-  promoDiscount: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.sand, marginTop: 4 },
+  promoTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.charcoal,
+    marginTop: spacing.sm,
+  },
+  promoDiscount: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.sand,
+    marginTop: 4,
+  },
   promoValid: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 4 },
   locationCard: {
-    flexDirection: 'row', alignItems: 'center', gap: spacing.sm, padding: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    padding: spacing.md,
   },
   locationIcon: { fontSize: 28 },
   locationName: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },

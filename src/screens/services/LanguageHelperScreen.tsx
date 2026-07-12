@@ -16,14 +16,14 @@ const PHRASES: Record<string, Array<{ en: string; ar: string; phonetic: string }
     { en: 'Good evening', ar: 'مساء الخير', phonetic: 'Masa al-khayr' },
     { en: 'How are you?', ar: 'كيف حالك؟', phonetic: 'Kayf halak?' },
     { en: 'Thank you', ar: 'شكراً', phonetic: 'Shukran' },
-    { en: 'Goodbye', ar: 'مع السلامة', phonetic: 'Ma\'a as-salama' },
+    { en: 'Goodbye', ar: 'مع السلامة', phonetic: "Ma'a as-salama" },
   ],
   Dining: [
     { en: 'The bill, please', ar: 'الحساب لو سمحت', phonetic: 'Al-hisab law samaht' },
     { en: 'Is this halal?', ar: 'هل هذا حلال؟', phonetic: 'Hal hatha halal?' },
-    { en: 'Water, please', ar: 'ماء لو سمحت', phonetic: 'Ma\' law samaht' },
+    { en: 'Water, please', ar: 'ماء لو سمحت', phonetic: "Ma' law samaht" },
     { en: 'Delicious!', ar: 'لذيذ!', phonetic: 'Latheeth!' },
-    { en: 'I\'m vegetarian', ar: 'أنا نباتي', phonetic: 'Ana nabati' },
+    { en: "I'm vegetarian", ar: 'أنا نباتي', phonetic: 'Ana nabati' },
     { en: 'No spicy, please', ar: 'بدون حار لو سمحت', phonetic: 'Bidun har law samaht' },
   ],
   Transport: [
@@ -38,21 +38,21 @@ const PHRASES: Record<string, Array<{ en: string; ar: string; phonetic: string }
     { en: 'How much?', ar: 'بكم؟', phonetic: 'Bikam?' },
     { en: 'Too expensive', ar: 'غالي جداً', phonetic: 'Ghali jiddan' },
     { en: 'Discount?', ar: 'في خصم؟', phonetic: 'Fi khasm?' },
-    { en: 'I\'ll take it', ar: 'آخذه', phonetic: 'Aakhuthuh' },
+    { en: "I'll take it", ar: 'آخذه', phonetic: 'Aakhuthuh' },
     { en: 'Cash / Card', ar: 'كاش / بطاقة', phonetic: 'Cash / Bitaqa' },
   ],
   Emergency: [
-    { en: 'Help!', ar: 'مساعدة!', phonetic: 'Musa\'ada!' },
+    { en: 'Help!', ar: 'مساعدة!', phonetic: "Musa'ada!" },
     { en: 'Call the police', ar: 'اتصل بالشرطة', phonetic: 'Ittasil bish-shurta' },
     { en: 'I need a doctor', ar: 'أحتاج طبيب', phonetic: 'Ahtaj tabeeb' },
     { en: 'Hospital', ar: 'مستشفى', phonetic: 'Mustashfa' },
-    { en: 'I\'m lost', ar: 'أنا ضائع', phonetic: 'Ana da\'i' },
+    { en: "I'm lost", ar: 'أنا ضائع', phonetic: "Ana da'i" },
   ],
   General: [
-    { en: 'Yes / No', ar: 'نعم / لا', phonetic: 'Na\'am / La' },
+    { en: 'Yes / No', ar: 'نعم / لا', phonetic: "Na'am / La" },
     { en: 'Please', ar: 'لو سمحت', phonetic: 'Law samaht' },
     { en: 'Sorry', ar: 'آسف', phonetic: 'Aasif' },
-    { en: 'I don\'t understand', ar: 'لا أفهم', phonetic: 'La afham' },
+    { en: "I don't understand", ar: 'لا أفهم', phonetic: 'La afham' },
     { en: 'Do you speak English?', ar: 'هل تتكلم إنجليزي؟', phonetic: 'Hal tatakallam inglizi?' },
     { en: 'My name is...', ar: 'اسمي...', phonetic: 'Ismi...' },
   ],
@@ -66,9 +66,18 @@ export default function LanguageHelperScreen() {
     <View style={styles.container}>
       <Header title="Language Helper" showBack onBack={() => navigation.goBack()} />
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoryRow}
+      >
         {CATEGORIES.map((c) => (
-          <CategoryPill key={c} label={c} isActive={category === c} onPress={() => setCategory(c)} />
+          <CategoryPill
+            key={c}
+            label={c}
+            isActive={category === c}
+            onPress={() => setCategory(c)}
+          />
         ))}
       </ScrollView>
 
@@ -92,6 +101,16 @@ const styles = StyleSheet.create({
   scroll: { padding: spacing.md },
   phraseCard: { padding: spacing.md, marginBottom: spacing.sm },
   english: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
-  arabic: { fontSize: typography.sizes.xl, color: colors.teal, marginTop: spacing.sm, textAlign: 'right' },
-  phonetic: { fontSize: typography.sizes.sm, color: colors.sand, fontStyle: 'italic', marginTop: spacing.xs },
+  arabic: {
+    fontSize: typography.sizes.xl,
+    color: colors.teal,
+    marginTop: spacing.sm,
+    textAlign: 'right',
+  },
+  phonetic: {
+    fontSize: typography.sizes.sm,
+    color: colors.sand,
+    fontStyle: 'italic',
+    marginTop: spacing.xs,
+  },
 });

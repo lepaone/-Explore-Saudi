@@ -9,7 +9,9 @@ import { useWalletStore } from '../../store/useWalletStore';
 import { formatDate } from '../../utils/formatters';
 
 const STATUS_VARIANT: Record<string, 'trending' | 'soldOut' | 'new'> = {
-  active: 'new', used: 'soldOut', expired: 'soldOut',
+  active: 'new',
+  used: 'soldOut',
+  expired: 'soldOut',
 };
 
 export default function MyTicketsScreen() {
@@ -58,16 +60,36 @@ const styles = StyleSheet.create({
   ticketCard: { padding: spacing.md, marginBottom: spacing.md },
   ticketHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   ticketType: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.sand },
-  eventName: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.sm },
+  eventName: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.sm,
+  },
   venue: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
   date: { fontSize: typography.sizes.sm, color: colors.sand, fontWeight: '600', marginTop: 4 },
-  qrSection: { alignItems: 'center', marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.pearl },
+  qrSection: {
+    alignItems: 'center',
+    marginTop: spacing.md,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
+  },
   qrPlaceholder: {
-    width: 120, height: 120, borderRadius: borderRadius.md,
-    backgroundColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 120,
+    height: 120,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   qrText: { fontSize: typography.sizes.xxl, fontWeight: '700', color: colors.charcoal },
-  qrCode: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: spacing.sm, fontFamily: 'monospace' },
+  qrCode: {
+    fontSize: typography.sizes.sm,
+    color: colors.slate,
+    marginTop: spacing.sm,
+    fontFamily: 'monospace',
+  },
   empty: { alignItems: 'center', paddingTop: 80 },
   emptyIcon: { fontSize: 48, marginBottom: spacing.sm },
   emptyText: { fontSize: typography.sizes.lg, fontWeight: '600', color: colors.charcoal },

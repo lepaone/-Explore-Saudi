@@ -30,9 +30,18 @@ export default function ShoppingScreen() {
     <View style={styles.container}>
       <Header title="Shopping" showBack onBack={() => navigation.goBack()} />
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoryRow}
+      >
         {CATEGORIES.map((c) => (
-          <CategoryPill key={c.key} label={c.label} isActive={category === c.key} onPress={() => setCategory(c.key)} />
+          <CategoryPill
+            key={c.key}
+            label={c.label}
+            isActive={category === c.key}
+            onPress={() => setCategory(c.key)}
+          />
         ))}
       </ScrollView>
 
@@ -46,9 +55,16 @@ export default function ShoppingScreen() {
             style={styles.card}
             onPress={() => navigation.navigate('MallDetail', { id: item.id })}
           >
-            <Image source={{ uri: item.images[0] }} style={styles.cardImage} contentFit="cover" transition={200} />
+            <Image
+              source={{ uri: item.images[0] }}
+              style={styles.cardImage}
+              contentFit="cover"
+              transition={200}
+            />
             <LinearGradient colors={['transparent', 'rgba(0,0,0,0.65)']} style={styles.cardOverlay}>
-              {item.promotions.length > 0 && <Badge text={item.promotions[0].discount} variant="discount" size="sm" />}
+              {item.promotions.length > 0 && (
+                <Badge text={item.promotions[0].discount} variant="discount" size="sm" />
+              )}
               <Text style={styles.cardName}>{item.name}</Text>
               <View style={styles.cardMeta}>
                 <Text style={styles.cardCity}>{item.city}</Text>
@@ -67,15 +83,27 @@ const styles = StyleSheet.create({
   categoryRow: { paddingHorizontal: spacing.md, paddingBottom: spacing.sm },
   list: { padding: spacing.md, paddingBottom: 100 },
   card: {
-    height: 180, borderRadius: borderRadius.lg, marginBottom: spacing.sm,
-    overflow: 'hidden', ...shadows.medium,
+    height: 180,
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing.sm,
+    overflow: 'hidden',
+    ...shadows.medium,
   },
   cardImage: { width: '100%', height: '100%' },
   cardOverlay: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    padding: spacing.md, paddingTop: spacing.xl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: spacing.md,
+    paddingTop: spacing.xl,
   },
-  cardName: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.white, marginTop: spacing.xs },
+  cardName: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.white,
+    marginTop: spacing.xs,
+  },
   cardMeta: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 },
   cardCity: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.8)' },
   cardStores: { fontSize: typography.sizes.sm, color: colors.sand, fontWeight: '600' },

@@ -28,7 +28,8 @@ export default function OfflineMapsScreen() {
         <Card variant="outlined" style={styles.infoCard}>
           <Text style={styles.infoIcon}>{'\uD83D\uDCE1'}</Text>
           <Text style={styles.infoText}>
-            Download city maps for offline navigation. Maps include streets, landmarks, and points of interest.
+            Download city maps for offline navigation. Maps include streets, landmarks, and points
+            of interest.
           </Text>
         </Card>
 
@@ -47,8 +48,14 @@ export default function OfflineMapsScreen() {
               <Button
                 title="Download"
                 onPress={() => {
-                  setMaps((prev) => prev.map((m) => m.id === map.id ? { ...m, downloaded: true } : m));
-                  Alert.alert('Download Complete', `${map.city} map (${map.size}) has been downloaded for offline use.`, [{ text: 'OK' }]);
+                  setMaps((prev) =>
+                    prev.map((m) => (m.id === map.id ? { ...m, downloaded: true } : m)),
+                  );
+                  Alert.alert(
+                    'Download Complete',
+                    `${map.city} map (${map.size}) has been downloaded for offline use.`,
+                    [{ text: 'OK' }],
+                  );
                 }}
                 size="sm"
                 variant="outline"
@@ -66,12 +73,20 @@ export default function OfflineMapsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md },
-  infoCard: { flexDirection: 'row', padding: spacing.md, marginBottom: spacing.lg, alignItems: 'center' },
+  infoCard: {
+    flexDirection: 'row',
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+    alignItems: 'center',
+  },
   infoIcon: { fontSize: 24, marginRight: spacing.sm },
   infoText: { flex: 1, fontSize: typography.sizes.sm, color: colors.slate, lineHeight: 20 },
   mapRow: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   mapIcon: { fontSize: 28, marginRight: spacing.sm },
   mapInfo: { flex: 1 },

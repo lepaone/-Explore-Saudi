@@ -18,7 +18,9 @@ export default function DigitalIDScreen() {
         {/* ID Card */}
         <LinearGradient colors={[...gradients.nightGradient]} style={styles.idCard}>
           <View style={styles.idHeader}>
-            <Text style={styles.idHeaderText}>{'\uD83C\uDDF8\uD83C\uDDE6'} Kingdom of Saudi Arabia</Text>
+            <Text style={styles.idHeaderText}>
+              {'\uD83C\uDDF8\uD83C\uDDE6'} Kingdom of Saudi Arabia
+            </Text>
             <Text style={styles.idType}>Tourist Digital ID</Text>
           </View>
           <View style={styles.idBody}>
@@ -75,7 +77,9 @@ export default function DigitalIDScreen() {
         <TouchableOpacity
           style={styles.manageBtn}
           activeOpacity={0.85}
-          onPress={() => navigation.getParent()?.navigate('ProfileTab', { screen: 'DigitalDocuments' })}
+          onPress={() =>
+            navigation.getParent()?.navigate('ProfileTab', { screen: 'DigitalDocuments' })
+          }
         >
           <Text style={styles.manageBtnIcon}>📄</Text>
           <View style={{ flex: 1 }}>
@@ -89,7 +93,8 @@ export default function DigitalIDScreen() {
         <Card variant="outlined" style={styles.infoCard}>
           <Text style={styles.infoIcon}>{'\u2139\uFE0F'}</Text>
           <Text style={styles.infoText}>
-            Your Digital ID can be used for verification at hotels, attractions, and government services throughout Saudi Arabia.
+            Your Digital ID can be used for verification at hotels, attractions, and government
+            services throughout Saudi Arabia.
           </Text>
         </Card>
 
@@ -117,8 +122,12 @@ const styles = StyleSheet.create({
   idType: { fontSize: typography.sizes.xs, color: 'rgba(255,255,255,0.6)', marginTop: 4 },
   idBody: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg },
   avatarWrap: {
-    width: 64, height: 64, borderRadius: 32, backgroundColor: colors.sand,
-    alignItems: 'center', justifyContent: 'center',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: colors.sand,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   avatarText: { fontSize: 28, fontWeight: '700', color: colors.white },
   idInfo: { marginLeft: spacing.md },
@@ -127,29 +136,58 @@ const styles = StyleSheet.create({
   idFields: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: spacing.lg },
   idField: {},
   fieldLabel: { fontSize: typography.sizes.xs, color: 'rgba(255,255,255,0.5)' },
-  fieldValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.white, marginTop: 2 },
+  fieldValue: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '600',
+    color: colors.white,
+    marginTop: 2,
+  },
   qrWrap: { alignItems: 'center' },
   qrPlaceholder: {
-    width: 100, height: 100, borderRadius: borderRadius.md,
-    backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center',
+    width: 100,
+    height: 100,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   qrText: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
 
   // Status card
   statusCard: { padding: spacing.md, marginBottom: spacing.lg },
-  statusTitle: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm },
-  statusRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: spacing.xs },
+  statusTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+  },
+  statusRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.xs,
+  },
   statusDoc: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
-  statusBadge: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.sm, paddingVertical: 4, borderRadius: borderRadius.full },
+  statusBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: borderRadius.full,
+  },
   statusLabel: { fontSize: typography.sizes.xs, fontWeight: '600', marginLeft: 4 },
   statusDivider: { height: 1, backgroundColor: colors.pearl, marginVertical: spacing.xs },
 
   // Manage Documents button
   manageBtn: {
-    flexDirection: 'row', alignItems: 'center',
-    backgroundColor: colors.primary + '10', borderRadius: borderRadius.lg,
-    padding: spacing.md, marginBottom: spacing.lg,
-    borderWidth: 1.5, borderColor: colors.primary + '30',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.primary + '10',
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+    borderWidth: 1.5,
+    borderColor: colors.primary + '30',
   },
   manageBtnIcon: { fontSize: 28, marginRight: spacing.sm },
   manageBtnTitle: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal },
@@ -157,7 +195,12 @@ const styles = StyleSheet.create({
   manageBtnArrow: { fontSize: 20, color: colors.primary, fontWeight: '700' },
 
   // Info cards
-  infoCard: { flexDirection: 'row', padding: spacing.md, marginBottom: spacing.sm, alignItems: 'center' },
+  infoCard: {
+    flexDirection: 'row',
+    padding: spacing.md,
+    marginBottom: spacing.sm,
+    alignItems: 'center',
+  },
   infoIcon: { fontSize: 22, marginRight: spacing.sm },
   infoText: { flex: 1, fontSize: typography.sizes.sm, color: colors.slate, lineHeight: 20 },
 });

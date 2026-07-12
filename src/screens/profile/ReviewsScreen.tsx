@@ -7,11 +7,41 @@ import RatingStars from '../../components/common/RatingStars';
 import { colors, typography, spacing } from '../../constants/theme';
 
 const REVIEWS = [
-  { id: '1', place: 'Hegra (AlUla)', rating: 5, text: 'Absolutely breathtaking! The Nabataean tombs are incredible. A must-visit.', date: '2026-03-25' },
-  { id: '2', place: 'Nusr-Et Steakhouse', rating: 4, text: 'Great food and atmosphere. The golden tomahawk is an experience!', date: '2026-03-20' },
-  { id: '3', place: 'Banyan Tree AlUla', rating: 5, text: 'Best hotel experience ever. Stargazing from the private villa was magical.', date: '2026-03-24' },
-  { id: '4', place: 'Edge of the World', rating: 5, text: 'The view is unreal. Make sure to go at sunrise for the best experience.', date: '2026-03-15' },
-  { id: '5', place: 'Boulevard Riyadh City', rating: 4, text: 'So much to do! Great food and entertainment options. Gets crowded on weekends.', date: '2026-03-10' },
+  {
+    id: '1',
+    place: 'Hegra (AlUla)',
+    rating: 5,
+    text: 'Absolutely breathtaking! The Nabataean tombs are incredible. A must-visit.',
+    date: '2026-03-25',
+  },
+  {
+    id: '2',
+    place: 'Nusr-Et Steakhouse',
+    rating: 4,
+    text: 'Great food and atmosphere. The golden tomahawk is an experience!',
+    date: '2026-03-20',
+  },
+  {
+    id: '3',
+    place: 'Banyan Tree AlUla',
+    rating: 5,
+    text: 'Best hotel experience ever. Stargazing from the private villa was magical.',
+    date: '2026-03-24',
+  },
+  {
+    id: '4',
+    place: 'Edge of the World',
+    rating: 5,
+    text: 'The view is unreal. Make sure to go at sunrise for the best experience.',
+    date: '2026-03-15',
+  },
+  {
+    id: '5',
+    place: 'Boulevard Riyadh City',
+    rating: 4,
+    text: 'So much to do! Great food and entertainment options. Gets crowded on weekends.',
+    date: '2026-03-10',
+  },
 ];
 
 export default function ReviewsScreen() {
@@ -41,7 +71,17 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   list: { padding: spacing.md, paddingBottom: 100 },
   card: { padding: spacing.md, marginBottom: spacing.sm },
-  place: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal, marginBottom: spacing.xs },
-  text: { fontSize: typography.sizes.sm, color: colors.slate, lineHeight: 20, marginTop: spacing.sm },
+  place: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.charcoal,
+    marginBottom: spacing.xs,
+  },
+  text: {
+    fontSize: typography.sizes.sm,
+    color: colors.slate,
+    lineHeight: 20,
+    marginTop: spacing.sm,
+  },
   date: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: spacing.sm },
 });

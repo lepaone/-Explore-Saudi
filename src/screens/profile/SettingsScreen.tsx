@@ -7,7 +7,8 @@ import { useSettingsStore } from '../../store/useSettingsStore';
 
 export default function SettingsScreen() {
   const navigation = useNavigation();
-  const { language, theme, notifications, setLanguage, toggleTheme, toggleNotifications } = useSettingsStore();
+  const { language, theme, notifications, setLanguage, toggleTheme, toggleNotifications } =
+    useSettingsStore();
 
   return (
     <View style={styles.container}>
@@ -85,30 +86,50 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm, marginTop: spacing.lg },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+    marginTop: spacing.lg,
+  },
   langRow: { flexDirection: 'row', gap: spacing.sm },
   langBtn: {
-    flex: 1, paddingVertical: spacing.md, alignItems: 'center',
-    borderRadius: borderRadius.md, backgroundColor: colors.pearl,
+    flex: 1,
+    paddingVertical: spacing.md,
+    alignItems: 'center',
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.pearl,
   },
   langBtnActive: { backgroundColor: colors.sand },
   langText: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   langTextActive: { color: colors.white },
   settingRow: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingVertical: spacing.md, borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   settingLabel: { fontSize: typography.sizes.md, color: colors.charcoal },
   settingDesc: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   aboutRow: {
-    flexDirection: 'row', justifyContent: 'space-between',
-    paddingVertical: spacing.sm, borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   aboutLabel: { fontSize: typography.sizes.md, color: colors.charcoal },
   aboutValue: { fontSize: typography.sizes.md, color: colors.slate },
   linkRow: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingVertical: spacing.md, borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   linkText: { fontSize: typography.sizes.md, color: colors.charcoal },
   linkArrow: { fontSize: 22, color: colors.slate },

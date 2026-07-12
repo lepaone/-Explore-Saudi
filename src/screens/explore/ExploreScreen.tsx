@@ -1,5 +1,13 @@
 import React, { useState, useMemo, useRef, useCallback } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView, RefreshControl } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,7 +18,7 @@ import { SCREEN_WIDTH } from '../../constants/layout';
 import { attractions } from '../../services/mockData/attractions';
 
 const FILTERS = ['All', 'Popular', 'Recommended', 'Rating'] as const;
-type Filter = typeof FILTERS[number];
+type Filter = (typeof FILTERS)[number];
 
 export default function ExploreScreen() {
   const navigation = useNavigation<any>();
@@ -32,11 +40,14 @@ export default function ExploreScreen() {
   const filtered = useMemo(() => {
     let items = attractions;
     if (activeFilter === 'Popular') items = items.filter((a) => a.isFeatured);
-    else if (activeFilter === 'Recommended') items = [...items].sort((a, b) => b.reviewCount - a.reviewCount);
+    else if (activeFilter === 'Recommended')
+      items = [...items].sort((a, b) => b.reviewCount - a.reviewCount);
     else if (activeFilter === 'Rating') items = [...items].sort((a, b) => b.rating - a.rating);
     if (search.trim()) {
       const q = search.toLowerCase();
-      items = items.filter((a) => a.name.toLowerCase().includes(q) || a.city.toLowerCase().includes(q));
+      items = items.filter(
+        (a) => a.name.toLowerCase().includes(q) || a.city.toLowerCase().includes(q),
+      );
     }
     return items;
   }, [activeFilter, search]);
@@ -63,14 +74,22 @@ export default function ExploreScreen() {
       </View>
 
       {/* Filter pills: All / Popular / Recommended / Rating */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.filterRow}
+      >
         {FILTERS.map((f) => (
           <TouchableOpacity
             key={f}
             style={[styles.filterPill, activeFilter === f && styles.filterPillActive]}
             onPress={() => setActiveFilter(f)}
           >
-            <Text style={[styles.filterPillText, activeFilter === f && styles.filterPillTextActive]}>{f}</Text>
+            <Text
+              style={[styles.filterPillText, activeFilter === f && styles.filterPillTextActive]}
+            >
+              {f}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -87,7 +106,12 @@ export default function ExploreScreen() {
         onScroll={(e) => setShowScrollTop(e.nativeEvent.contentOffset.y > 300)}
         scrollEventThrottle={16}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.primary} colors={[colors.primary]} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.primary}
+            colors={[colors.primary]}
+          />
         }
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -102,7 +126,9 @@ export default function ExploreScreen() {
               transition={200}
             />
             {/* Heart */}
-            <View style={styles.heartBtn}><Text style={styles.heartIcon}>♡</Text></View>
+            <View style={styles.heartBtn}>
+              <Text style={styles.heartIcon}>♡</Text>
+            </View>
             {/* Overlay */}
             <LinearGradient
               colors={['transparent', 'rgba(5,31,31,0.78)']}
@@ -113,7 +139,9 @@ export default function ExploreScreen() {
                   <Text style={styles.featuredText}>⭐ Featured</Text>
                 </View>
               )}
-              <Text style={styles.cardName} numberOfLines={2}>{item.name}</Text>
+              <Text style={styles.cardName} numberOfLines={2}>
+                {item.name}
+              </Text>
               <Text style={styles.cardSub}>
                 {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
               </Text>
@@ -150,27 +178,42 @@ const styles = StyleSheet.create({
 
   // Search row
   searchRow: {
-    flexDirection: 'row', alignItems: 'center',
-    paddingHorizontal: spacing.md, paddingTop: spacing.sm, paddingBottom: spacing.xs,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.xs,
     gap: spacing.sm,
   },
   filterIconBtn: {
-    width: 44, height: 44, borderRadius: 12,
-    backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center',
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
     flexShrink: 0,
   },
   filterIconText: { fontSize: 18 },
 
   // Filter pills
-  filterRow: { paddingHorizontal: spacing.md, paddingTop: spacing.sm, paddingBottom: spacing.sm, gap: spacing.sm },
+  filterRow: {
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.sm,
+    gap: spacing.sm,
+  },
   filterPill: {
-    paddingVertical: spacing.xs + 2, paddingHorizontal: spacing.md + 4,
+    paddingVertical: spacing.xs + 2,
+    paddingHorizontal: spacing.md + 4,
     borderRadius: borderRadius.full,
-    borderWidth: 1.5, borderColor: colors.pearl,
+    borderWidth: 1.5,
+    borderColor: colors.pearl,
     backgroundColor: colors.white,
   },
   filterPillActive: {
-    backgroundColor: colors.primary, borderColor: colors.primary,
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
   filterPillText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
   filterPillTextActive: { color: colors.white },
@@ -179,37 +222,64 @@ const styles = StyleSheet.create({
   grid: { paddingHorizontal: spacing.md, paddingBottom: 100 },
   gridRow: { gap: spacing.sm, marginBottom: spacing.sm },
   card: {
-    width: CARD_W, height: 160,
-    borderRadius: borderRadius.xl, overflow: 'hidden',
+    width: CARD_W,
+    height: 160,
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
     backgroundColor: colors.pearl,
     ...shadows.md,
   },
   heartBtn: {
-    position: 'absolute', top: spacing.sm, right: spacing.sm,
-    width: 28, height: 28, borderRadius: 14,
+    position: 'absolute',
+    top: spacing.sm,
+    right: spacing.sm,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.92)',
-    alignItems: 'center', justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 2,
   },
   heartIcon: { fontSize: 14, color: colors.error },
   cardOverlay: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    paddingHorizontal: spacing.sm, paddingBottom: spacing.sm, paddingTop: spacing.xl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: spacing.sm,
+    paddingBottom: spacing.sm,
+    paddingTop: spacing.xl,
     zIndex: 1,
   },
   featuredBadge: {
-    backgroundColor: 'rgba(200,168,75,0.85)', borderRadius: borderRadius.full,
-    paddingVertical: 2, paddingHorizontal: spacing.xs + 2, alignSelf: 'flex-start', marginBottom: 4,
+    backgroundColor: 'rgba(200,168,75,0.85)',
+    borderRadius: borderRadius.full,
+    paddingVertical: 2,
+    paddingHorizontal: spacing.xs + 2,
+    alignSelf: 'flex-start',
+    marginBottom: 4,
   },
   featuredText: { fontSize: 9, fontWeight: '700', color: colors.white },
-  cardName: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.white, lineHeight: 17 },
+  cardName: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '700',
+    color: colors.white,
+    lineHeight: 17,
+  },
   cardSub: { fontSize: 10, color: 'rgba(255,255,255,0.8)', marginTop: 2 },
 
   // Scroll-to-top FAB
   scrollTopFab: {
-    position: 'absolute', bottom: 100, right: spacing.md,
-    width: 44, height: 44, borderRadius: 22,
-    backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center',
+    position: 'absolute',
+    bottom: 100,
+    right: spacing.md,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.md,
   },
   scrollTopIcon: { fontSize: 20, fontWeight: '700', color: colors.white },

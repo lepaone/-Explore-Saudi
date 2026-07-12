@@ -8,7 +8,17 @@ import RatingStars from '../../components/common/RatingStars';
 import { colors, typography, spacing, borderRadius, shadows } from '../../constants/theme';
 import { restaurants } from '../../services/mockData/restaurants';
 
-const CUISINES = ['All', 'Traditional Saudi', 'Japanese', 'French', 'Italian', 'Chinese', 'Cafe', 'Fast Food', 'Grilled Chicken'];
+const CUISINES = [
+  'All',
+  'Traditional Saudi',
+  'Japanese',
+  'French',
+  'Italian',
+  'Chinese',
+  'Cafe',
+  'Fast Food',
+  'Grilled Chicken',
+];
 const PRICE_FILTERS = ['All', '$', '$$', '$$$', '$$$$'];
 
 export default function CuisineFinderScreen() {
@@ -30,7 +40,11 @@ export default function CuisineFinderScreen() {
     <View style={styles.container}>
       <Header title="Cuisine Finder" showBack onBack={() => navigation.goBack()} />
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cuisineRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.cuisineRow}
+      >
         {CUISINES.map((c) => (
           <CategoryPill key={c} label={c} isActive={cuisine === c} onPress={() => setCuisine(c)} />
         ))}
@@ -58,13 +72,22 @@ export default function CuisineFinderScreen() {
             style={styles.card}
             onPress={() => navigation.navigate('RestaurantDetail', { id: item.id })}
           >
-            <Image source={{ uri: item.images[0] }} style={styles.cardImage} contentFit="cover" transition={200} />
+            <Image
+              source={{ uri: item.images[0] }}
+              style={styles.cardImage}
+              contentFit="cover"
+              transition={200}
+            />
             <View style={styles.cardInfo}>
               <View style={styles.cardTop}>
-                <Text style={styles.cardName} numberOfLines={1}>{item.name}</Text>
+                <Text style={styles.cardName} numberOfLines={1}>
+                  {item.name}
+                </Text>
                 {item.isOpen && <View style={styles.openDot} />}
               </View>
-              <Text style={styles.cardCuisine}>{item.cuisine} - {item.city}</Text>
+              <Text style={styles.cardCuisine}>
+                {item.cuisine} - {item.city}
+              </Text>
               <View style={styles.cardMeta}>
                 <RatingStars rating={item.rating} size="sm" showCount count={item.reviewCount} />
                 <Text style={styles.cardPrice}>{'$'.repeat(item.priceRange)}</Text>
@@ -93,21 +116,28 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   cuisineRow: { paddingHorizontal: spacing.md, paddingBottom: spacing.sm },
   priceRow: {
-    flexDirection: 'row', paddingHorizontal: spacing.md, gap: spacing.sm,
+    flexDirection: 'row',
+    paddingHorizontal: spacing.md,
+    gap: spacing.sm,
     paddingBottom: spacing.sm,
   },
   priceChip: {
-    paddingVertical: spacing.xs + 2, paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.full, backgroundColor: colors.pearl,
+    paddingVertical: spacing.xs + 2,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.pearl,
   },
   priceChipActive: { backgroundColor: colors.sand },
   priceText: { fontSize: typography.sizes.sm, color: colors.charcoal, fontWeight: '600' },
   priceTextActive: { color: colors.white },
   list: { padding: spacing.md, paddingBottom: 100 },
   card: {
-    flexDirection: 'row', backgroundColor: colors.white,
-    borderRadius: borderRadius.lg, marginBottom: spacing.sm,
-    overflow: 'hidden', ...shadows.small,
+    flexDirection: 'row',
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing.sm,
+    overflow: 'hidden',
+    ...shadows.small,
   },
   cardImage: { width: 110, height: 130 },
   cardInfo: { flex: 1, padding: spacing.sm, justifyContent: 'center' },
@@ -116,12 +146,17 @@ const styles = StyleSheet.create({
   openDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.success },
   cardCuisine: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   cardMeta: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: spacing.xs,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: spacing.xs,
   },
   cardPrice: { fontSize: typography.sizes.sm, color: colors.sand, fontWeight: '700' },
   dietRow: { flexDirection: 'row', gap: spacing.xs, marginTop: spacing.xs },
   dietTag: {
-    backgroundColor: colors.pearl, paddingVertical: 2, paddingHorizontal: spacing.xs + 2,
+    backgroundColor: colors.pearl,
+    paddingVertical: 2,
+    paddingHorizontal: spacing.xs + 2,
     borderRadius: borderRadius.sm,
   },
   dietText: { fontSize: 10, color: colors.slate, fontWeight: '500' },

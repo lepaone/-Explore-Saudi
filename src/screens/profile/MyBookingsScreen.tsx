@@ -7,11 +7,46 @@ import Badge from '../../components/common/Badge';
 import { colors, typography, spacing, borderRadius } from '../../constants/theme';
 
 const BOOKINGS = [
-  { id: '1', type: 'Hotel', name: 'Four Seasons Riyadh', date: '2026-04-10 — 2026-04-13', status: 'upcoming', icon: '🏨' },
-  { id: '2', type: 'Restaurant', name: 'Nusr-Et Steakhouse', date: '2026-04-08, 8:00 PM', status: 'upcoming', icon: '🍽️' },
-  { id: '3', type: 'Event', name: 'F1 Saudi Grand Prix', date: '2026-04-17 — 2026-04-19', status: 'upcoming', icon: '🏎️' },
-  { id: '4', type: 'Attraction', name: 'Hegra (AlUla)', date: '2026-03-25', status: 'completed', icon: '🏛️' },
-  { id: '5', type: 'Hotel', name: 'Banyan Tree AlUla', date: '2026-03-24 — 2026-03-26', status: 'completed', icon: '🏨' },
+  {
+    id: '1',
+    type: 'Hotel',
+    name: 'Four Seasons Riyadh',
+    date: '2026-04-10 — 2026-04-13',
+    status: 'upcoming',
+    icon: '🏨',
+  },
+  {
+    id: '2',
+    type: 'Restaurant',
+    name: 'Nusr-Et Steakhouse',
+    date: '2026-04-08, 8:00 PM',
+    status: 'upcoming',
+    icon: '🍽️',
+  },
+  {
+    id: '3',
+    type: 'Event',
+    name: 'F1 Saudi Grand Prix',
+    date: '2026-04-17 — 2026-04-19',
+    status: 'upcoming',
+    icon: '🏎️',
+  },
+  {
+    id: '4',
+    type: 'Attraction',
+    name: 'Hegra (AlUla)',
+    date: '2026-03-25',
+    status: 'completed',
+    icon: '🏛️',
+  },
+  {
+    id: '5',
+    type: 'Hotel',
+    name: 'Banyan Tree AlUla',
+    date: '2026-03-24 — 2026-03-26',
+    status: 'completed',
+    icon: '🏨',
+  },
 ];
 
 export default function MyBookingsScreen() {
@@ -56,7 +91,12 @@ const styles = StyleSheet.create({
   icon: { fontSize: 32, marginRight: spacing.sm },
   info: { flex: 1 },
   headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  type: { fontSize: typography.sizes.xs, color: colors.sand, fontWeight: '600', textTransform: 'uppercase' },
+  type: {
+    fontSize: typography.sizes.xs,
+    color: colors.sand,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+  },
   name: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal, marginTop: 4 },
   date: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
 });

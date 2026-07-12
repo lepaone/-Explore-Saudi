@@ -47,7 +47,13 @@ export default function ShareExperienceScreen() {
         </TouchableOpacity>
 
         <View style={styles.btnWrap}>
-          <Button title="Share" onPress={() => navigation.goBack()} size="lg" fullWidth disabled={!text.trim()} />
+          <Button
+            title="Share"
+            onPress={() => navigation.goBack()}
+            size="lg"
+            fullWidth
+            disabled={!text.trim()}
+          />
         </View>
       </ScrollView>
     </View>
@@ -57,23 +63,39 @@ export default function ShareExperienceScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   scroll: { padding: spacing.md },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm, marginTop: spacing.lg },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+    marginTop: spacing.lg,
+  },
   moodRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   moodChip: {
-    paddingVertical: spacing.xs + 4, paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.full, backgroundColor: colors.pearl,
+    paddingVertical: spacing.xs + 4,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.pearl,
   },
   moodChipActive: { backgroundColor: colors.sand },
   moodText: { fontSize: typography.sizes.sm, color: colors.charcoal },
   moodTextActive: { color: colors.white },
   textInput: {
-    borderWidth: 1, borderColor: colors.pearl, borderRadius: borderRadius.md,
-    padding: spacing.md, fontSize: typography.sizes.md, color: colors.charcoal,
+    borderWidth: 1,
+    borderColor: colors.pearl,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    fontSize: typography.sizes.md,
+    color: colors.charcoal,
     minHeight: 120,
   },
   photoBtn: {
-    borderWidth: 2, borderColor: colors.pearl, borderStyle: 'dashed',
-    borderRadius: borderRadius.lg, padding: spacing.xl, alignItems: 'center',
+    borderWidth: 2,
+    borderColor: colors.pearl,
+    borderStyle: 'dashed',
+    borderRadius: borderRadius.lg,
+    padding: spacing.xl,
+    alignItems: 'center',
   },
   photoIcon: { fontSize: 36, marginBottom: spacing.xs },
   photoText: { fontSize: typography.sizes.sm, color: colors.slate },

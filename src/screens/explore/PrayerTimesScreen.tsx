@@ -4,11 +4,22 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Header from '../../components/common/Header';
 import Card from '../../components/common/Card';
-import { colors, gradients, typography, spacing, borderRadius, shadows } from '../../constants/theme';
+import {
+  colors,
+  gradients,
+  typography,
+  spacing,
+  borderRadius,
+  shadows,
+} from '../../constants/theme';
 import { prayerTimes, nearbyMosques } from '../../services/mockData/prayerTimes';
 
 const PRAYER_ICONS: Record<string, string> = {
-  Fajr: '🌅', Dhuhr: '☀️', Asr: '🌤️', Maghrib: '🌇', Isha: '🌙',
+  Fajr: '🌅',
+  Dhuhr: '☀️',
+  Asr: '🌤️',
+  Maghrib: '🌇',
+  Isha: '🌙',
 };
 
 export default function PrayerTimesScreen() {
@@ -33,15 +44,22 @@ export default function PrayerTimesScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Today's Prayer Times</Text>
           {prayerTimes.map((prayer) => (
-            <View key={prayer.name} style={[styles.prayerRow, prayer.isNext && styles.prayerRowActive]}>
+            <View
+              key={prayer.name}
+              style={[styles.prayerRow, prayer.isNext && styles.prayerRowActive]}
+            >
               <View style={styles.prayerLeft}>
                 <Text style={styles.prayerIcon}>{PRAYER_ICONS[prayer.name]}</Text>
                 <View>
-                  <Text style={[styles.prayerName, prayer.isNext && styles.prayerNameActive]}>{prayer.name}</Text>
+                  <Text style={[styles.prayerName, prayer.isNext && styles.prayerNameActive]}>
+                    {prayer.name}
+                  </Text>
                   <Text style={styles.prayerNameAr}>{prayer.nameAr}</Text>
                 </View>
               </View>
-              <Text style={[styles.prayerTime, prayer.isNext && styles.prayerTimeActive]}>{prayer.time}</Text>
+              <Text style={[styles.prayerTime, prayer.isNext && styles.prayerTimeActive]}>
+                {prayer.time}
+              </Text>
             </View>
           ))}
         </View>
@@ -92,20 +110,45 @@ export default function PrayerTimesScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   hero: {
-    margin: spacing.md, borderRadius: borderRadius.lg, padding: spacing.xl,
+    margin: spacing.md,
+    borderRadius: borderRadius.lg,
+    padding: spacing.xl,
     alignItems: 'center',
   },
   heroLabel: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.8)' },
-  heroName: { fontSize: typography.sizes.hero, fontWeight: '700', color: colors.white, marginTop: spacing.xs },
+  heroName: {
+    fontSize: typography.sizes.hero,
+    fontWeight: '700',
+    color: colors.white,
+    marginTop: spacing.xs,
+  },
   heroNameAr: { fontSize: typography.sizes.xl, color: 'rgba(255,255,255,0.8)', marginTop: 4 },
-  heroTime: { fontSize: typography.sizes.xxl, fontWeight: '700', color: colors.white, marginTop: spacing.sm },
-  heroCity: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.7)', marginTop: spacing.sm },
+  heroTime: {
+    fontSize: typography.sizes.xxl,
+    fontWeight: '700',
+    color: colors.white,
+    marginTop: spacing.sm,
+  },
+  heroCity: {
+    fontSize: typography.sizes.sm,
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: spacing.sm,
+  },
   section: { paddingHorizontal: spacing.md, marginTop: spacing.lg },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.md },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.md,
+  },
   prayerRow: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingVertical: spacing.md, paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.md, marginBottom: spacing.xs,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.md,
+    marginBottom: spacing.xs,
   },
   prayerRowActive: { backgroundColor: 'rgba(132,110,219,0.08)' },
   prayerLeft: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
@@ -118,15 +161,21 @@ const styles = StyleSheet.create({
   mosqueCard: { marginBottom: spacing.sm },
   mosqueRow: { flexDirection: 'row', alignItems: 'center' },
   mosqueIconWrap: {
-    width: 44, height: 44, borderRadius: 12, backgroundColor: colors.pearl,
-    alignItems: 'center', justifyContent: 'center',
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   mosqueIcon: { fontSize: 22 },
   mosqueInfo: { flex: 1, marginLeft: spacing.sm },
   mosqueName: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.charcoal },
   mosqueNameAr: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   mosqueDistance: {
-    backgroundColor: colors.pearl, paddingVertical: spacing.xs, paddingHorizontal: spacing.sm,
+    backgroundColor: colors.pearl,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
     borderRadius: borderRadius.sm,
   },
   distanceText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.teal },
@@ -134,8 +183,18 @@ const styles = StyleSheet.create({
   qiblaContent: { alignItems: 'center' },
   qiblaIcon: { fontSize: 48, marginBottom: spacing.sm },
   qiblaTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
-  qiblaDesc: { fontSize: typography.sizes.sm, color: colors.slate, textAlign: 'center', marginTop: 4 },
+  qiblaDesc: {
+    fontSize: typography.sizes.sm,
+    color: colors.slate,
+    textAlign: 'center',
+    marginTop: 4,
+  },
   qiblaCompass: { alignItems: 'center', marginTop: spacing.lg },
   compassText: { fontSize: 64 },
-  compassDegree: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.teal, marginTop: spacing.sm },
+  compassDegree: {
+    fontSize: typography.sizes.md,
+    fontWeight: '600',
+    color: colors.teal,
+    marginTop: spacing.sm,
+  },
 });

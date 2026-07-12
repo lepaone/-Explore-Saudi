@@ -22,12 +22,48 @@ import { attractions } from '../../services/mockData/attractions';
 import { hotels } from '../../services/mockData/hotels';
 
 const CATS = [
-  { id: '1', icon: '🏨', label: 'Hotels',    tab: 'ExploreTab', route: 'Accommodation' as string | undefined },
-  { id: '2', icon: '🏛️', label: 'Heritage',  tab: 'ExploreTab', route: undefined as string | undefined },
-  { id: '3', icon: '🌿', label: 'Nature',    tab: 'ExploreTab', route: undefined as string | undefined },
-  { id: '4', icon: '🕌', label: 'Religious', tab: 'ExploreTab', route: undefined as string | undefined },
-  { id: '5', icon: '🍽️', label: 'Dining',    tab: 'ExploreTab', route: 'Dining' as string | undefined },
-  { id: '6', icon: '🛍️', label: 'Shopping',  tab: 'ExploreTab', route: 'Shopping' as string | undefined },
+  {
+    id: '1',
+    icon: '🏨',
+    label: 'Hotels',
+    tab: 'ExploreTab',
+    route: 'Accommodation' as string | undefined,
+  },
+  {
+    id: '2',
+    icon: '🏛️',
+    label: 'Heritage',
+    tab: 'ExploreTab',
+    route: undefined as string | undefined,
+  },
+  {
+    id: '3',
+    icon: '🌿',
+    label: 'Nature',
+    tab: 'ExploreTab',
+    route: undefined as string | undefined,
+  },
+  {
+    id: '4',
+    icon: '🕌',
+    label: 'Religious',
+    tab: 'ExploreTab',
+    route: undefined as string | undefined,
+  },
+  {
+    id: '5',
+    icon: '🍽️',
+    label: 'Dining',
+    tab: 'ExploreTab',
+    route: 'Dining' as string | undefined,
+  },
+  {
+    id: '6',
+    icon: '🛍️',
+    label: 'Shopping',
+    tab: 'ExploreTab',
+    route: 'Shopping' as string | undefined,
+  },
 ];
 
 const FEATURED_CARD_WIDTH = SCREEN_WIDTH - spacing.md * 2;
@@ -58,18 +94,19 @@ export default function HomeScreen() {
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   }, []);
 
-  React.useEffect(() => { if (!user) login('demo', 'demo'); }, []);
+  React.useEffect(() => {
+    if (!user) login('demo', 'demo');
+  }, []);
 
   const allFeatured = attractions.filter((a) => a.isFeatured);
   const featuredExperiences = allFeatured.slice(0, 5);
   const featuredIds = new Set(featuredExperiences.map((a) => a.id));
   const recommended = allFeatured.filter((a) => !featuredIds.has(a.id)).slice(0, 4);
-  const leftRec  = recommended.filter((_, i) => i % 2 === 0);
+  const leftRec = recommended.filter((_, i) => i % 2 === 0);
   const rightRec = recommended.filter((_, i) => i % 2 !== 0);
   const topHotels = [...hotels].sort((a, b) => b.rating - a.rating).slice(0, 4);
 
-  const goToDetail = (id: string) =>
-    navigation.push('AttractionDetail', { id });
+  const goToDetail = (id: string) => navigation.push('AttractionDetail', { id });
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
@@ -79,20 +116,25 @@ export default function HomeScreen() {
         onScroll={onScroll}
         scrollEventThrottle={16}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.primary} colors={[colors.primary]} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.primary}
+            colors={[colors.primary]}
+          />
         }
       >
-
         {/* ── Header ──────────────────────────────────────────────────── */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
-            <Text style={styles.greeting}>
-              Hi, {user?.name?.split(' ')[0] ?? 'Traveler'}! 👋
-            </Text>
+            <Text style={styles.greeting}>Hi, {user?.name?.split(' ')[0] ?? 'Traveler'}! 👋</Text>
             <Text style={styles.subGreeting}>Where do you want to go?</Text>
           </View>
           <View style={styles.headerRight}>
-            <TouchableOpacity style={styles.notifBtn} onPress={() => navigation.navigate('Notifications')}>
+            <TouchableOpacity
+              style={styles.notifBtn}
+              onPress={() => navigation.navigate('Notifications')}
+            >
               <Text style={styles.notifIcon}>🔔</Text>
               <View style={styles.notifDot} />
             </TouchableOpacity>
@@ -103,7 +145,11 @@ export default function HomeScreen() {
         </View>
 
         {/* ── Search Bar ──────────────────────────────────────────────── */}
-        <TouchableOpacity style={styles.searchBar} activeOpacity={0.8} onPress={() => navigation.navigate('Search')}>
+        <TouchableOpacity
+          style={styles.searchBar}
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('Search')}
+        >
           <Text style={styles.searchIcon}>🔍</Text>
           <Text style={styles.searchPlaceholder}>Search destinations, cities...</Text>
           <View style={styles.searchFilterBtn}>
@@ -124,7 +170,7 @@ export default function HomeScreen() {
           >
             <View style={styles.visaCardContent}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.visaCardBadge}>🛂  Tourist Visa</Text>
+                <Text style={styles.visaCardBadge}>🛂 Tourist Visa</Text>
                 <Text style={styles.visaCardTitle}>Visa & Travel Package</Text>
                 <Text style={styles.visaCardDesc}>
                   Tourist Visa + Hotel + Flight from SAR 2,499
@@ -156,7 +202,9 @@ export default function HomeScreen() {
           contentContainerStyle={styles.featuredList}
           keyExtractor={(item) => `feat_${item.id}`}
           onScroll={(e) => {
-            const idx = Math.round(e.nativeEvent.contentOffset.x / (FEATURED_CARD_WIDTH + spacing.sm));
+            const idx = Math.round(
+              e.nativeEvent.contentOffset.x / (FEATURED_CARD_WIDTH + spacing.sm),
+            );
             setFeaturedIndex(idx);
           }}
           scrollEventThrottle={16}
@@ -166,12 +214,22 @@ export default function HomeScreen() {
               activeOpacity={0.9}
               onPress={() => goToDetail(item.id)}
             >
-              <Image source={{ uri: item.images[0] }} style={StyleSheet.absoluteFillObject} contentFit="cover" transition={300} />
-              <LinearGradient colors={['transparent', 'rgba(5,31,31,0.85)']} style={styles.featuredOverlay}>
+              <Image
+                source={{ uri: item.images[0] }}
+                style={StyleSheet.absoluteFillObject}
+                contentFit="cover"
+                transition={300}
+              />
+              <LinearGradient
+                colors={['transparent', 'rgba(5,31,31,0.85)']}
+                style={styles.featuredOverlay}
+              >
                 <View style={styles.featuredBadge}>
                   <Text style={styles.featuredBadgeText}>⭐ Featured</Text>
                 </View>
-                <Text style={styles.featuredName} numberOfLines={2}>{item.name}</Text>
+                <Text style={styles.featuredName} numberOfLines={2}>
+                  {item.name}
+                </Text>
                 <View style={styles.featuredMeta}>
                   <Text style={styles.featuredCity}>📍 {item.city}</Text>
                   <Text style={styles.featuredPrice}>
@@ -196,7 +254,11 @@ export default function HomeScreen() {
             <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.catRow}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.catRow}
+        >
           {CATS.map((cat) => (
             <TouchableOpacity
               key={cat.id}
@@ -224,12 +286,31 @@ export default function HomeScreen() {
         <View style={styles.recGrid}>
           <View style={styles.recCol}>
             {leftRec.map((item) => (
-              <TouchableOpacity key={item.id} style={styles.recCard} onPress={() => goToDetail(item.id)} activeOpacity={0.9}>
-                <Image source={{ uri: item.images[0] }} style={StyleSheet.absoluteFillObject} contentFit="cover" transition={200} />
-                <View style={styles.heartBtn}><Text style={styles.heartIcon}>♡</Text></View>
-                <LinearGradient colors={['transparent', 'rgba(5,31,31,0.80)']} style={styles.recOverlay}>
-                  <Text style={styles.recCardName} numberOfLines={2}>{item.name}</Text>
-                  <Text style={styles.recCardPrice}>{item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}</Text>
+              <TouchableOpacity
+                key={item.id}
+                style={styles.recCard}
+                onPress={() => goToDetail(item.id)}
+                activeOpacity={0.9}
+              >
+                <Image
+                  source={{ uri: item.images[0] }}
+                  style={StyleSheet.absoluteFillObject}
+                  contentFit="cover"
+                  transition={200}
+                />
+                <View style={styles.heartBtn}>
+                  <Text style={styles.heartIcon}>♡</Text>
+                </View>
+                <LinearGradient
+                  colors={['transparent', 'rgba(5,31,31,0.80)']}
+                  style={styles.recOverlay}
+                >
+                  <Text style={styles.recCardName} numberOfLines={2}>
+                    {item.name}
+                  </Text>
+                  <Text style={styles.recCardPrice}>
+                    {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
+                  </Text>
                 </LinearGradient>
               </TouchableOpacity>
             ))}
@@ -237,12 +318,31 @@ export default function HomeScreen() {
           <View style={{ width: spacing.sm }} />
           <View style={styles.recCol}>
             {rightRec.map((item) => (
-              <TouchableOpacity key={item.id} style={styles.recCard} onPress={() => goToDetail(item.id)} activeOpacity={0.9}>
-                <Image source={{ uri: item.images[0] }} style={StyleSheet.absoluteFillObject} contentFit="cover" transition={200} />
-                <View style={styles.heartBtn}><Text style={styles.heartIcon}>♡</Text></View>
-                <LinearGradient colors={['transparent', 'rgba(5,31,31,0.80)']} style={styles.recOverlay}>
-                  <Text style={styles.recCardName} numberOfLines={2}>{item.name}</Text>
-                  <Text style={styles.recCardPrice}>{item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}</Text>
+              <TouchableOpacity
+                key={item.id}
+                style={styles.recCard}
+                onPress={() => goToDetail(item.id)}
+                activeOpacity={0.9}
+              >
+                <Image
+                  source={{ uri: item.images[0] }}
+                  style={StyleSheet.absoluteFillObject}
+                  contentFit="cover"
+                  transition={200}
+                />
+                <View style={styles.heartBtn}>
+                  <Text style={styles.heartIcon}>♡</Text>
+                </View>
+                <LinearGradient
+                  colors={['transparent', 'rgba(5,31,31,0.80)']}
+                  style={styles.recOverlay}
+                >
+                  <Text style={styles.recCardName} numberOfLines={2}>
+                    {item.name}
+                  </Text>
+                  <Text style={styles.recCardPrice}>
+                    {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
+                  </Text>
                 </LinearGradient>
               </TouchableOpacity>
             ))}
@@ -269,12 +369,23 @@ export default function HomeScreen() {
               onPress={() => navigation.push('HotelDetail', { id: item.id })}
               activeOpacity={0.85}
             >
-              <Image source={{ uri: item.images[0] }} style={styles.placeImg} contentFit="cover" transition={200} />
+              <Image
+                source={{ uri: item.images[0] }}
+                style={styles.placeImg}
+                contentFit="cover"
+                transition={200}
+              />
               <View style={styles.placeInfo}>
-                <Text style={styles.placeName} numberOfLines={1}>{item.name}</Text>
-                <Text style={styles.placeCity} numberOfLines={1}>📍 {item.city}</Text>
+                <Text style={styles.placeName} numberOfLines={1}>
+                  {item.name}
+                </Text>
+                <Text style={styles.placeCity} numberOfLines={1}>
+                  📍 {item.city}
+                </Text>
                 <View style={styles.placeMeta}>
-                  <Text style={styles.placeStar}>{'⭐'} {item.rating.toFixed(1)}</Text>
+                  <Text style={styles.placeStar}>
+                    {'⭐'} {item.rating.toFixed(1)}
+                  </Text>
                   <Text style={styles.placePrice}>SAR {item.pricePerNight}/n</Text>
                 </View>
               </View>
@@ -300,8 +411,12 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingHorizontal: spacing.md, paddingTop: spacing.md, paddingBottom: spacing.sm,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.md,
+    paddingBottom: spacing.sm,
     backgroundColor: colors.white,
   },
   headerLeft: { flex: 1 },
@@ -309,35 +424,57 @@ const styles = StyleSheet.create({
   subGreeting: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
   notifBtn: {
-    width: 40, height: 40, borderRadius: 20,
-    backgroundColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   notifIcon: { fontSize: 18 },
   notifDot: {
-    position: 'absolute', top: 7, right: 7,
-    width: 8, height: 8, borderRadius: 4,
-    backgroundColor: colors.error, borderWidth: 1.5, borderColor: colors.pearl,
+    position: 'absolute',
+    top: 7,
+    right: 7,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.error,
+    borderWidth: 1.5,
+    borderColor: colors.pearl,
   },
   avatarCircle: {
-    width: 44, height: 44, borderRadius: 22,
-    alignItems: 'center', justifyContent: 'center',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   avatarText: { fontSize: 18, fontWeight: '800', color: colors.white },
 
   // Search
   searchBar: {
-    flexDirection: 'row', alignItems: 'center',
-    backgroundColor: colors.white, borderRadius: borderRadius.full,
-    marginHorizontal: spacing.md, marginVertical: spacing.md,
-    paddingHorizontal: spacing.md, paddingVertical: 11,
-    borderWidth: 1, borderColor: colors.pearl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.full,
+    marginHorizontal: spacing.md,
+    marginVertical: spacing.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 11,
+    borderWidth: 1,
+    borderColor: colors.pearl,
     ...shadows.sm,
   },
   searchIcon: { fontSize: 16, marginRight: spacing.sm },
   searchPlaceholder: { flex: 1, fontSize: typography.sizes.sm, color: colors.slate },
   searchFilterBtn: {
-    width: 32, height: 32, borderRadius: 16,
-    backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   searchFilterIcon: { fontSize: 13 },
 
@@ -390,8 +527,11 @@ const styles = StyleSheet.create({
 
   // Section headers
   sectionHeader: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingHorizontal: spacing.md, marginBottom: spacing.sm,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    marginBottom: spacing.sm,
   },
   sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   seeAll: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.primary },
@@ -400,71 +540,130 @@ const styles = StyleSheet.create({
   catRow: { paddingHorizontal: spacing.md, gap: spacing.lg, paddingBottom: spacing.md },
   catItem: { alignItems: 'center', gap: spacing.xs },
   catCircle: {
-    width: 56, height: 56, borderRadius: 28,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     backgroundColor: colors.white,
-    borderWidth: 1.5, borderColor: colors.primary,
-    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.sm,
   },
   catIcon: { fontSize: 24 },
-  catLabel: { fontSize: typography.sizes.xs, fontWeight: '500', color: colors.charcoal, textAlign: 'center' },
+  catLabel: {
+    fontSize: typography.sizes.xs,
+    fontWeight: '500',
+    color: colors.charcoal,
+    textAlign: 'center',
+  },
 
   // Recommended
   recGrid: { flexDirection: 'row', paddingHorizontal: spacing.md, marginBottom: spacing.sm },
   recCol: { flex: 1 },
   recCard: {
-    height: 180, borderRadius: borderRadius.xl, overflow: 'hidden',
-    marginBottom: spacing.sm, backgroundColor: colors.pearl,
+    height: 180,
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
+    marginBottom: spacing.sm,
+    backgroundColor: colors.pearl,
     ...shadows.md,
   },
   heartBtn: {
-    position: 'absolute', top: spacing.sm, right: spacing.sm,
-    width: 30, height: 30, borderRadius: 15,
+    position: 'absolute',
+    top: spacing.sm,
+    right: spacing.sm,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,0.92)',
-    alignItems: 'center', justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 2,
   },
   heartIcon: { fontSize: 15, color: colors.error },
   recOverlay: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    paddingHorizontal: spacing.sm, paddingBottom: spacing.sm, paddingTop: spacing.xl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: spacing.sm,
+    paddingBottom: spacing.sm,
+    paddingTop: spacing.xl,
     zIndex: 1,
   },
-  recCardName: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.white, lineHeight: 17 },
+  recCardName: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '700',
+    color: colors.white,
+    lineHeight: 17,
+  },
   recCardPrice: { fontSize: 10, color: 'rgba(255,255,255,0.8)', marginTop: 2 },
 
   // Featured Experiences (horizontal snap cards)
   featuredList: { paddingHorizontal: spacing.md, gap: spacing.sm },
   featuredCard: {
-    width: FEATURED_CARD_WIDTH, height: 150,
-    borderRadius: borderRadius.xl, overflow: 'hidden',
+    width: FEATURED_CARD_WIDTH,
+    height: 150,
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
     backgroundColor: colors.pearl,
     ...shadows.md,
   },
   featuredOverlay: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    paddingHorizontal: spacing.md, paddingBottom: spacing.md, paddingTop: spacing.xxl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: spacing.md,
+    paddingBottom: spacing.md,
+    paddingTop: spacing.xxl,
   },
   featuredBadge: {
-    backgroundColor: 'rgba(200,168,75,0.9)', borderRadius: borderRadius.full,
-    paddingVertical: 3, paddingHorizontal: spacing.sm, alignSelf: 'flex-start', marginBottom: spacing.xs,
+    backgroundColor: 'rgba(200,168,75,0.9)',
+    borderRadius: borderRadius.full,
+    paddingVertical: 3,
+    paddingHorizontal: spacing.sm,
+    alignSelf: 'flex-start',
+    marginBottom: spacing.xs,
   },
   featuredBadgeText: { fontSize: 10, fontWeight: '700', color: colors.white },
-  featuredName: { fontSize: typography.sizes.lg, fontWeight: '800', color: colors.white, lineHeight: 22 },
-  featuredMeta: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: spacing.xs },
+  featuredName: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '800',
+    color: colors.white,
+    lineHeight: 22,
+  },
+  featuredMeta: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: spacing.xs,
+  },
   featuredCity: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.85)' },
   featuredPrice: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.sand },
 
   // Pagination dots
-  dotsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingVertical: spacing.sm },
+  dotsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+  },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.pearl, marginHorizontal: 3 },
   dotActive: { width: 20, backgroundColor: colors.primary },
 
   // Scroll-to-top FAB
   scrollTopFab: {
-    position: 'absolute', bottom: 100, right: spacing.md,
-    width: 44, height: 44, borderRadius: 22,
-    backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center',
+    position: 'absolute',
+    bottom: 100,
+    right: spacing.md,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.md,
   },
   scrollTopIcon: { fontSize: 20, fontWeight: '700', color: colors.white },
@@ -472,8 +671,10 @@ const styles = StyleSheet.create({
   // Places to Visit
   placeList: { paddingHorizontal: spacing.md, gap: spacing.sm, paddingBottom: spacing.sm },
   placeCard: {
-    width: 160, backgroundColor: colors.white,
-    borderRadius: borderRadius.lg, overflow: 'hidden',
+    width: 160,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
     ...shadows.sm,
   },
   placeImg: { width: '100%', height: 110, backgroundColor: colors.pearl },

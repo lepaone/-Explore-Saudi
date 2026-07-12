@@ -16,7 +16,12 @@ export default function EventDetailScreen() {
   const event = entertainmentEvents.find((e) => e.id === route.params?.id);
   const [selectedTicket, setSelectedTicket] = useState<string | null>(null);
 
-  if (!event) return <View style={styles.center}><Text>Event not found</Text></View>;
+  if (!event)
+    return (
+      <View style={styles.center}>
+        <Text>Event not found</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
@@ -59,17 +64,22 @@ export default function EventDetailScreen() {
           {/* Ticket Selection */}
           <Text style={styles.sectionTitle}>Select Tickets</Text>
           {event.ticketTypes.map((ticket) => (
-            <TouchableOpacity
-              key={ticket.id}
-              onPress={() => setSelectedTicket(ticket.id)}
-            >
+            <TouchableOpacity key={ticket.id} onPress={() => setSelectedTicket(ticket.id)}>
               <Card
                 variant={selectedTicket === ticket.id ? 'elevated' : 'outlined'}
-                style={[styles.ticketCard, selectedTicket === ticket.id && styles.ticketCardSelected]}
+                style={[
+                  styles.ticketCard,
+                  selectedTicket === ticket.id && styles.ticketCardSelected,
+                ]}
               >
                 <View style={styles.ticketRow}>
                   <View style={styles.ticketRadio}>
-                    <View style={[styles.radioOuter, selectedTicket === ticket.id && styles.radioOuterActive]}>
+                    <View
+                      style={[
+                        styles.radioOuter,
+                        selectedTicket === ticket.id && styles.radioOuterActive,
+                      ]}
+                    >
                       {selectedTicket === ticket.id && <View style={styles.radioInner} />}
                     </View>
                   </View>
@@ -100,11 +110,13 @@ export default function EventDetailScreen() {
           </View>
           <Button
             title="Buy Ticket"
-            onPress={() => navigation.navigate('TicketCheckout', {
-              eventId: event.id,
-              ticketTypeId: selectedTicket,
-              quantity: 1,
-            })}
+            onPress={() =>
+              navigation.navigate('TicketCheckout', {
+                eventId: event.id,
+                ticketTypeId: selectedTicket,
+                quantity: 1,
+              })
+            }
             size="lg"
           />
         </View>
@@ -117,9 +129,15 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.white },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   backBtn: {
-    position: 'absolute', top: 50, left: spacing.md,
-    width: 40, height: 40, borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.9)', alignItems: 'center', justifyContent: 'center',
+    position: 'absolute',
+    top: 50,
+    left: spacing.md,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.small,
   },
   backIcon: { fontSize: 20, color: colors.charcoal },
@@ -128,23 +146,49 @@ const styles = StyleSheet.create({
   name: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   nameAr: { fontSize: typography.sizes.md, color: colors.slate, marginTop: 4 },
   infoGrid: {
-    flexDirection: 'row', justifyContent: 'space-between',
-    marginTop: spacing.md, paddingVertical: spacing.md,
-    borderTopWidth: 1, borderBottomWidth: 1, borderColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: spacing.md,
+    paddingVertical: spacing.md,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: colors.pearl,
   },
   infoItem: { alignItems: 'center', flex: 1 },
   infoIcon: { fontSize: 22, marginBottom: 4 },
   infoLabel: { fontSize: typography.sizes.xs, color: colors.slate },
-  infoValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal, marginTop: 2, textAlign: 'center' },
-  description: { fontSize: typography.sizes.md, color: colors.slate, lineHeight: 24, marginTop: spacing.md },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.lg, marginBottom: spacing.sm },
+  infoValue: {
+    fontSize: typography.sizes.sm,
+    fontWeight: '600',
+    color: colors.charcoal,
+    marginTop: 2,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: typography.sizes.md,
+    color: colors.slate,
+    lineHeight: 24,
+    marginTop: spacing.md,
+  },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.lg,
+    marginBottom: spacing.sm,
+  },
   ticketCard: { marginBottom: spacing.sm, padding: spacing.md },
   ticketCardSelected: { borderColor: colors.sand, borderWidth: 2 },
   ticketRow: { flexDirection: 'row', alignItems: 'center' },
   ticketRadio: { marginRight: spacing.sm },
   radioOuter: {
-    width: 22, height: 22, borderRadius: 11, borderWidth: 2,
-    borderColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 2,
+    borderColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   radioOuterActive: { borderColor: colors.sand },
   radioInner: { width: 12, height: 12, borderRadius: 6, backgroundColor: colors.sand },
@@ -152,10 +196,19 @@ const styles = StyleSheet.create({
   ticketDesc: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
   ticketAvail: { fontSize: typography.sizes.xs, color: colors.success, marginTop: 2 },
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    backgroundColor: colors.white, padding: spacing.md, paddingBottom: spacing.xl,
-    borderTopWidth: 1, borderTopColor: colors.pearl, ...shadows.large,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
+    ...shadows.large,
   },
   bottomLabel: { fontSize: typography.sizes.xs, color: colors.slate, marginBottom: 4 },
 });

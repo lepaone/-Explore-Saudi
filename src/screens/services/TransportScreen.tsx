@@ -20,14 +20,24 @@ export default function TransportScreen() {
   const navigation = useNavigation();
   const [type, setType] = useState('all');
 
-  const filtered = type === 'all' ? transportOptions : transportOptions.filter((t) => t.type === type);
+  const filtered =
+    type === 'all' ? transportOptions : transportOptions.filter((t) => t.type === type);
 
   return (
     <View style={styles.container}>
       <Header title="Transport" showBack onBack={() => navigation.goBack()} />
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.filterRow}
+      >
         {TYPES.map((t) => (
-          <CategoryPill key={t.key} label={t.label} isActive={type === t.key} onPress={() => setType(t.key)} />
+          <CategoryPill
+            key={t.key}
+            label={t.label}
+            isActive={type === t.key}
+            onPress={() => setType(t.key)}
+          />
         ))}
       </ScrollView>
       <FlatList
@@ -43,7 +53,9 @@ export default function TransportScreen() {
                 <Text style={styles.route}>{item.route}</Text>
                 <View style={styles.meta}>
                   <Text style={styles.fare}>SAR {item.fare}</Text>
-                  <Text style={styles.duration}>{'\uD83D\uDD52'} {item.duration}</Text>
+                  <Text style={styles.duration}>
+                    {'\uD83D\uDD52'} {item.duration}
+                  </Text>
                 </View>
               </View>
             </View>

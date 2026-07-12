@@ -17,7 +17,7 @@ const TABS = ['Hotels', 'Restaurants', 'Activities'] as const;
 export default function AttractionDetailScreen() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-  const [activeTab, setActiveTab] = useState<typeof TABS[number]>('Hotels');
+  const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>('Hotels');
   const [expanded, setExpanded] = useState(false);
 
   // Ticket booking state
@@ -31,7 +31,9 @@ export default function AttractionDetailScreen() {
 
   if (!attraction) {
     return (
-      <View style={styles.center}><Text>Attraction not found</Text></View>
+      <View style={styles.center}>
+        <Text>Attraction not found</Text>
+      </View>
     );
   }
 
@@ -43,7 +45,7 @@ export default function AttractionDetailScreen() {
       Alert.alert(
         'Free Entry',
         `${attraction.name} is free to visit!\n\n📍 ${attraction.city}, Saudi Arabia\n🕙 ${attraction.openingHours}`,
-        [{ text: 'Get Directions', onPress: () => {} }, { text: 'OK' }]
+        [{ text: 'Get Directions', onPress: () => {} }, { text: 'OK' }],
       );
     } else {
       setBookingStep('checkout');
@@ -55,7 +57,7 @@ export default function AttractionDetailScreen() {
       Alert.alert(
         'Insufficient Balance',
         `You need ${formatCurrency(totalPrice)} but your balance is ${formatCurrency(balance)}.\n\nPlease top up your wallet first.`,
-        [{ text: 'OK' }]
+        [{ text: 'OK' }],
       );
       return;
     }
@@ -86,18 +88,16 @@ export default function AttractionDetailScreen() {
         <Card variant="elevated" style={styles.successCard}>
           <Text style={styles.successAttrName}>{attraction.name}</Text>
           <Text style={styles.successDetail}>📍 {attraction.city}, Saudi Arabia</Text>
-          <Text style={styles.successDetail}>🎟️ {ticketQty} ticket{ticketQty > 1 ? 's' : ''}</Text>
+          <Text style={styles.successDetail}>
+            🎟️ {ticketQty} ticket{ticketQty > 1 ? 's' : ''}
+          </Text>
           <Text style={styles.successDetail}>🕙 {attraction.openingHours}</Text>
           <View style={styles.successDivider} />
           <Text style={styles.successCode}>Ticket: {ticketCode}</Text>
           <Text style={styles.successTotal}>Total: {formatCurrency(totalPrice)}</Text>
         </Card>
         <View style={styles.successButtons}>
-          <Button
-            title="Back to Explore"
-            onPress={() => navigation.goBack()}
-            fullWidth
-          />
+          <Button title="Back to Explore" onPress={() => navigation.goBack()} fullWidth />
         </View>
       </View>
     );
@@ -141,7 +141,9 @@ export default function AttractionDetailScreen() {
           <Card variant="elevated" style={styles.priceCard}>
             <Text style={styles.priceSectionTitle}>💰 Price Breakdown</Text>
             <View style={styles.priceRow}>
-              <Text style={styles.priceLabel}>{formatCurrency(attraction.price)} × {ticketQty}</Text>
+              <Text style={styles.priceLabel}>
+                {formatCurrency(attraction.price)} × {ticketQty}
+              </Text>
               <Text style={styles.priceValue}>{formatCurrency(totalPrice)}</Text>
             </View>
             <View style={styles.priceDivider} />
@@ -162,7 +164,9 @@ export default function AttractionDetailScreen() {
 
         <View style={styles.bottomBar}>
           <View>
-            <Text style={styles.bottomQtyText}>{ticketQty} ticket{ticketQty > 1 ? 's' : ''}</Text>
+            <Text style={styles.bottomQtyText}>
+              {ticketQty} ticket{ticketQty > 1 ? 's' : ''}
+            </Text>
             <Text style={styles.bottomTotalText}>{formatCurrency(totalPrice)}</Text>
           </View>
           <TouchableOpacity style={styles.purchaseBtn} onPress={handlePurchase}>
@@ -177,7 +181,6 @@ export default function AttractionDetailScreen() {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-
         {/* ── Hero Image with overlay ───────────────────────────────── */}
         <View style={styles.heroWrap}>
           <Image
@@ -203,10 +206,7 @@ export default function AttractionDetailScreen() {
           </View>
 
           {/* Bottom overlay: name + city + rating chip */}
-          <LinearGradient
-            colors={['transparent', 'rgba(5,31,31,0.88)']}
-            style={styles.heroOverlay}
-          >
+          <LinearGradient colors={['transparent', 'rgba(5,31,31,0.88)']} style={styles.heroOverlay}>
             <Text style={styles.heroName}>{attraction.name}</Text>
             <Text style={styles.heroCity}>{attraction.city}, Saudi Arabia</Text>
             <View style={styles.heroRatingChip}>
@@ -277,7 +277,9 @@ export default function AttractionDetailScreen() {
             </View>
             <View style={styles.metaItem}>
               <Text style={styles.metaIcon}>🕙</Text>
-              <Text style={styles.metaText} numberOfLines={1}>{attraction.openingHours}</Text>
+              <Text style={styles.metaText} numberOfLines={1}>
+                {attraction.openingHours}
+              </Text>
             </View>
           </View>
         </View>
@@ -313,32 +315,52 @@ const styles = StyleSheet.create({
   heroWrap: { width: '100%', height: 280 },
   heroImg: { width: '100%', height: '100%', backgroundColor: colors.pearl },
   heroActions: {
-    position: 'absolute', top: 48, left: 0, right: 0,
-    flexDirection: 'row', justifyContent: 'space-between',
+    position: 'absolute',
+    top: 48,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingHorizontal: spacing.md,
   },
   heroActRight: { flexDirection: 'row', gap: spacing.sm },
   heroBtn: {
-    width: 38, height: 38, borderRadius: 19,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     backgroundColor: 'rgba(255,255,255,0.9)',
-    alignItems: 'center', justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.sm,
   },
   heroBtnIcon: { fontSize: 17, color: colors.charcoal },
   heroOverlay: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    paddingHorizontal: spacing.md, paddingBottom: spacing.md, paddingTop: 60,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: spacing.md,
+    paddingBottom: spacing.md,
+    paddingTop: 60,
   },
   heroName: {
-    fontSize: typography.sizes.xl, fontWeight: '800', color: colors.white,
-    textShadowColor: 'rgba(0,0,0,0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4,
+    fontSize: typography.sizes.xl,
+    fontWeight: '800',
+    color: colors.white,
+    textShadowColor: 'rgba(0,0,0,0.4)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 4,
   },
   heroCity: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.8)', marginTop: 3 },
   heroRatingChip: {
-    flexDirection: 'row', alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.22)', alignSelf: 'flex-start',
-    paddingHorizontal: spacing.sm, paddingVertical: 4,
-    borderRadius: borderRadius.full, marginTop: spacing.xs,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.22)',
+    alignSelf: 'flex-start',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: borderRadius.full,
+    marginTop: spacing.xs,
     gap: 4,
   },
   heroRatingStar: { fontSize: 13 },
@@ -346,13 +368,18 @@ const styles = StyleSheet.create({
 
   // Tabs
   tabRow: {
-    paddingHorizontal: spacing.md, paddingVertical: spacing.sm, gap: spacing.sm,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    gap: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   tab: {
-    paddingVertical: spacing.xs + 2, paddingHorizontal: spacing.md + 4,
+    paddingVertical: spacing.xs + 2,
+    paddingHorizontal: spacing.md + 4,
     borderRadius: borderRadius.full,
-    borderWidth: 1.5, borderColor: colors.pearl,
+    borderWidth: 1.5,
+    borderColor: colors.pearl,
   },
   tabActive: { backgroundColor: colors.primary, borderColor: colors.primary },
   tabText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
@@ -360,33 +387,48 @@ const styles = StyleSheet.create({
 
   // Photo grid
   photoGrid: {
-    flexDirection: 'row', height: PHOTO_H,
-    marginHorizontal: spacing.md, marginTop: spacing.md,
-    borderRadius: borderRadius.lg, overflow: 'hidden', gap: 4,
+    flexDirection: 'row',
+    height: PHOTO_H,
+    marginHorizontal: spacing.md,
+    marginTop: spacing.md,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
+    gap: 4,
   },
   photoLeft: { width: '58%', height: '100%', backgroundColor: colors.pearl },
   photoRightCol: { flex: 1, gap: 4 },
   photoSmall: { flex: 1, backgroundColor: colors.pearl },
   photoMore: {
-    height: 46, backgroundColor: 'rgba(5,31,31,0.7)',
-    alignItems: 'center', justifyContent: 'center',
+    height: 46,
+    backgroundColor: 'rgba(5,31,31,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   photoMoreText: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.white },
 
   // Content
   content: { paddingHorizontal: spacing.md, paddingTop: spacing.lg },
   detailsLabel: {
-    fontSize: typography.sizes.xs, fontWeight: '800', letterSpacing: 1,
-    color: colors.slate, marginBottom: spacing.xs,
+    fontSize: typography.sizes.xs,
+    fontWeight: '800',
+    letterSpacing: 1,
+    color: colors.slate,
+    marginBottom: spacing.xs,
   },
   description: { fontSize: typography.sizes.md, color: colors.slate, lineHeight: 23 },
   readMore: {
-    fontSize: typography.sizes.sm, fontWeight: '700', color: colors.primary,
+    fontSize: typography.sizes.sm,
+    fontWeight: '700',
+    color: colors.primary,
     marginTop: spacing.xs,
   },
   metaRow: {
-    flexDirection: 'row', gap: spacing.md, marginTop: spacing.lg,
-    paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.pearl,
+    flexDirection: 'row',
+    gap: spacing.md,
+    marginTop: spacing.lg,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
     flexWrap: 'wrap',
   },
   metaItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
@@ -395,25 +437,40 @@ const styles = StyleSheet.create({
 
   // Bottom bar
   bottomBar: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    backgroundColor: colors.white, padding: spacing.md, paddingBottom: spacing.xl,
-    borderTopWidth: 1, borderTopColor: colors.pearl,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
+    borderTopWidth: 1,
+    borderTopColor: colors.pearl,
     ...shadows.lg,
   },
   priceLabel2: { fontSize: typography.sizes.xs, color: colors.slate, marginBottom: 4 },
   continueBtn: {
-    backgroundColor: colors.primary, borderRadius: 28,
-    paddingVertical: 14, paddingHorizontal: spacing.xl,
+    backgroundColor: colors.primary,
+    borderRadius: 28,
+    paddingVertical: 14,
+    paddingHorizontal: spacing.xl,
     ...shadows.md,
   },
   continueBtnText: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.white },
 
   // Checkout
   checkoutHeader: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingTop: 54, paddingBottom: spacing.sm, paddingHorizontal: spacing.md,
-    borderBottomWidth: 1, borderBottomColor: colors.pearl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 54,
+    paddingBottom: spacing.sm,
+    paddingHorizontal: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
     backgroundColor: colors.white,
   },
   checkoutBack: { fontSize: typography.sizes.md, fontWeight: '600', color: colors.primary },
@@ -424,23 +481,43 @@ const styles = StyleSheet.create({
   checkoutCity: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
   checkoutHours: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
   checkoutSectionTitle: {
-    fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal,
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
     marginBottom: spacing.sm,
   },
   qtyRow: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-    gap: spacing.lg, marginBottom: spacing.lg,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.lg,
+    marginBottom: spacing.lg,
   },
   qtyBtn: {
-    width: 48, height: 48, borderRadius: 24,
-    backgroundColor: colors.pearl, alignItems: 'center', justifyContent: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   qtyBtnText: { fontSize: 24, fontWeight: '700', color: colors.charcoal },
-  qtyValue: { fontSize: 32, fontWeight: '700', color: colors.charcoal, minWidth: 40, textAlign: 'center' },
+  qtyValue: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: colors.charcoal,
+    minWidth: 40,
+    textAlign: 'center',
+  },
 
   // Price breakdown
   priceCard: { padding: spacing.md },
-  priceSectionTitle: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.charcoal, marginBottom: spacing.sm },
+  priceSectionTitle: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginBottom: spacing.sm,
+  },
   priceRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: spacing.xs },
   priceLabel: { fontSize: typography.sizes.sm, color: colors.slate },
   priceValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
@@ -453,21 +530,44 @@ const styles = StyleSheet.create({
   bottomQtyText: { fontSize: typography.sizes.xs, color: colors.slate },
   bottomTotalText: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   purchaseBtn: {
-    backgroundColor: colors.primary, borderRadius: 28,
-    paddingVertical: 14, paddingHorizontal: spacing.xl,
+    backgroundColor: colors.primary,
+    borderRadius: 28,
+    paddingVertical: 14,
+    paddingHorizontal: spacing.xl,
     ...shadows.md,
   },
   purchaseBtnText: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.white },
 
   // Success
-  successContainer: { flex: 1, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', padding: spacing.xl },
+  successContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.xl,
+  },
   successIcon: { fontSize: 64, marginBottom: spacing.md },
   successTitle: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   successCard: { marginTop: spacing.lg, padding: spacing.lg, width: '100%', alignItems: 'center' },
   successAttrName: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
   successDetail: { fontSize: typography.sizes.md, color: colors.slate, marginTop: spacing.xs },
-  successDivider: { height: 1, backgroundColor: colors.pearl, width: '100%', marginVertical: spacing.sm },
-  successCode: { fontSize: typography.sizes.md, fontWeight: '700', color: colors.primary, marginTop: spacing.xs },
-  successTotal: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal, marginTop: spacing.xs },
+  successDivider: {
+    height: 1,
+    backgroundColor: colors.pearl,
+    width: '100%',
+    marginVertical: spacing.sm,
+  },
+  successCode: {
+    fontSize: typography.sizes.md,
+    fontWeight: '700',
+    color: colors.primary,
+    marginTop: spacing.xs,
+  },
+  successTotal: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '700',
+    color: colors.charcoal,
+    marginTop: spacing.xs,
+  },
   successButtons: { marginTop: spacing.xl, width: '100%', gap: spacing.sm },
 });
