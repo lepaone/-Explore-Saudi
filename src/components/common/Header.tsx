@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, typography, spacing } from '../../constants/theme';
+import { colors, typography, spacing, shadows } from '../../constants/theme';
 
 interface HeaderProps {
   title: string;
@@ -64,14 +64,17 @@ const Header: React.FC<HeaderProps> = ({
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
+    ...shadows.sm,
   },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm + 4,
-    minHeight: 56,
+    paddingVertical: spacing.sm + 6,
+    minHeight: 60,
   },
   leftSlot: {
     width: 44,
@@ -86,10 +89,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   backButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     backgroundColor: colors.pearl,
+    borderWidth: 1,
+    borderColor: colors.pearl,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: typography.sizes.lg,
-    fontWeight: '700',
+    fontWeight: '800',
     color: colors.charcoal,
     letterSpacing: 0.2,
   },

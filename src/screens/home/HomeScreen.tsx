@@ -416,12 +416,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
-    paddingBottom: spacing.sm,
+    paddingBottom: spacing.md,
     backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
   },
   headerLeft: { flex: 1 },
-  greeting: { fontSize: typography.sizes.xl, fontWeight: '800', color: colors.charcoal },
-  subGreeting: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
+  greeting: {
+    fontSize: typography.sizes.xxl,
+    fontWeight: '800',
+    color: colors.charcoal,
+    letterSpacing: 0.2,
+  },
+  subGreeting: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
   notifBtn: {
     width: 40,
@@ -449,6 +456,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
+    ...shadows.sm,
   },
   avatarText: { fontSize: 18, fontWeight: '800', color: colors.white },
 
@@ -481,10 +489,10 @@ const styles = StyleSheet.create({
   // Visa & Package card
   visaCard: {
     marginHorizontal: spacing.md,
-    marginBottom: spacing.lg,
-    borderRadius: borderRadius.lg,
-    padding: spacing.md,
-    ...shadows.medium,
+    marginBottom: spacing.xl,
+    borderRadius: borderRadius.xl,
+    padding: spacing.lg,
+    ...shadows.large,
   },
   visaCardContent: {
     flexDirection: 'row',
@@ -531,10 +539,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: spacing.md,
-    marginBottom: spacing.sm,
+    marginTop: spacing.sm,
+    marginBottom: spacing.md,
   },
-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
-  seeAll: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.primary },
+  sectionTitle: {
+    fontSize: typography.sizes.lg,
+    fontWeight: '800',
+    color: colors.charcoal,
+    letterSpacing: 0.1,
+  },
+  seeAll: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.primary },
 
   // Category
   catRow: { paddingHorizontal: spacing.md, gap: spacing.lg, paddingBottom: spacing.md },
@@ -673,8 +687,10 @@ const styles = StyleSheet.create({
   placeCard: {
     width: 160,
     backgroundColor: colors.white,
-    borderRadius: borderRadius.lg,
+    borderRadius: borderRadius.xl,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: colors.pearl,
     ...shadows.sm,
   },
   placeImg: { width: '100%', height: 110, backgroundColor: colors.pearl },

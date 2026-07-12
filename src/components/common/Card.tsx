@@ -28,6 +28,8 @@ const Card: React.FC<CardProps> = ({
   const variantStyles: Record<CardVariant, ViewStyle> = {
     default: {
       backgroundColor: colors.cream,
+      borderWidth: 1,
+      borderColor: colors.pearl,
       ...shadows.small,
     },
     elevated: {
@@ -65,7 +67,7 @@ const Card: React.FC<CardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: borderRadius.lg,
+    borderRadius: borderRadius.xl,
     overflow: 'hidden',
   },
 });

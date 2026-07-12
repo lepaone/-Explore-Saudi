@@ -1,0 +1,213 @@
+diff --git a/src/components/common/Card.tsx b/src/components/common/Card.tsx
+index 303050c..7a4e4f3 100644
+--- a/src/components/common/Card.tsx
++++ b/src/components/common/Card.tsx
+@@ -28,6 +28,8 @@ const Card: React.FC<CardProps> = ({
+   const variantStyles: Record<CardVariant, ViewStyle> = {
+     default: {
+       backgroundColor: colors.cream,
++      borderWidth: 1,
++      borderColor: colors.pearl,
+       ...shadows.small,
+     },
+     elevated: {
+@@ -65,7 +67,7 @@ const Card: React.FC<CardProps> = ({
+ 
+ const styles = StyleSheet.create({
+   card: {
+-    borderRadius: borderRadius.lg,
++    borderRadius: borderRadius.xl,
+     overflow: 'hidden',
+   },
+ });
+diff --git a/src/components/common/Header.tsx b/src/components/common/Header.tsx
+index efa3210..04464f1 100644
+--- a/src/components/common/Header.tsx
++++ b/src/components/common/Header.tsx
+@@ -6,7 +6,7 @@ import {
+   StyleSheet,
+ } from 'react-native';
+ import { SafeAreaView } from 'react-native-safe-area-context';
+-import { colors, typography, spacing } from '../../constants/theme';
++import { colors, typography, spacing, shadows } from '../../constants/theme';
+ 
+ interface HeaderProps {
+   title: string;
+@@ -64,14 +64,17 @@ const Header: React.FC<HeaderProps> = ({
+ const styles = StyleSheet.create({
+   safeArea: {
+     backgroundColor: colors.white,
++    borderBottomWidth: 1,
++    borderBottomColor: colors.pearl,
++    ...shadows.sm,
+   },
+   container: {
+     flexDirection: 'row',
+     alignItems: 'center',
+     justifyContent: 'space-between',
+     paddingHorizontal: spacing.md,
+-    paddingVertical: spacing.sm + 4,
+-    minHeight: 56,
++    paddingVertical: spacing.sm + 6,
++    minHeight: 60,
+   },
+   leftSlot: {
+     width: 44,
+@@ -86,10 +89,12 @@ const styles = StyleSheet.create({
+     alignItems: 'flex-end',
+   },
+   backButton: {
+-    width: 36,
+-    height: 36,
+-    borderRadius: 18,
++    width: 38,
++    height: 38,
++    borderRadius: 19,
+     backgroundColor: colors.pearl,
++    borderWidth: 1,
++    borderColor: colors.pearl,
+     alignItems: 'center',
+     justifyContent: 'center',
+   },
+@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
+   },
+   title: {
+     fontSize: typography.sizes.lg,
+-    fontWeight: '700',
++    fontWeight: '800',
+     color: colors.charcoal,
+     letterSpacing: 0.2,
+   },
+diff --git a/src/constants/theme.ts b/src/constants/theme.ts
+index de1d00c..d2950a2 100644
+--- a/src/constants/theme.ts
++++ b/src/constants/theme.ts
+@@ -97,34 +97,34 @@ export const borderRadius = {
+ export const shadows = {
+   // Short aliases
+   sm: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 4 },
+-    android: { elevation: 2 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 6 },
++    android: { elevation: 3 },
+     default: {},
+   }),
+   md: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.12, shadowRadius: 8 },
+-    android: { elevation: 5 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.14, shadowRadius: 12 },
++    android: { elevation: 6 },
+     default: {},
+   }),
+   lg: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.18, shadowRadius: 16 },
+-    android: { elevation: 10 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.2, shadowRadius: 22 },
++    android: { elevation: 12 },
+     default: {},
+   }),
+   // Legacy long aliases
+   small: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 4 },
+-    android: { elevation: 2 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 6 },
++    android: { elevation: 3 },
+     default: {},
+   }),
+   medium: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.12, shadowRadius: 8 },
+-    android: { elevation: 5 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.14, shadowRadius: 12 },
++    android: { elevation: 6 },
+     default: {},
+   }),
+   large: Platform.select({
+-    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.18, shadowRadius: 16 },
+-    android: { elevation: 10 },
++    ios: { shadowColor: '#030f0f', shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.2, shadowRadius: 22 },
++    android: { elevation: 12 },
+     default: {},
+   }),
+ } as const;
+diff --git a/src/screens/home/HomeScreen.tsx b/src/screens/home/HomeScreen.tsx
+index dbfe019..97bf68b 100644
+--- a/src/screens/home/HomeScreen.tsx
++++ b/src/screens/home/HomeScreen.tsx
+@@ -416,12 +416,19 @@ const styles = StyleSheet.create({
+     alignItems: 'center',
+     paddingHorizontal: spacing.md,
+     paddingTop: spacing.md,
+-    paddingBottom: spacing.sm,
++    paddingBottom: spacing.md,
+     backgroundColor: colors.white,
++    borderBottomWidth: 1,
++    borderBottomColor: colors.pearl,
+   },
+   headerLeft: { flex: 1 },
+-  greeting: { fontSize: typography.sizes.xl, fontWeight: '800', color: colors.charcoal },
+-  subGreeting: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
++  greeting: {
++    fontSize: typography.sizes.xxl,
++    fontWeight: '800',
++    color: colors.charcoal,
++    letterSpacing: 0.2,
++  },
++  subGreeting: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
+   headerRight: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+   notifBtn: {
+     width: 40,
+@@ -449,6 +456,7 @@ const styles = StyleSheet.create({
+     borderRadius: 22,
+     alignItems: 'center',
+     justifyContent: 'center',
++    ...shadows.sm,
+   },
+   avatarText: { fontSize: 18, fontWeight: '800', color: colors.white },
+ 
+@@ -481,10 +489,10 @@ const styles = StyleSheet.create({
+   // Visa & Package card
+   visaCard: {
+     marginHorizontal: spacing.md,
+-    marginBottom: spacing.lg,
+-    borderRadius: borderRadius.lg,
+-    padding: spacing.md,
+-    ...shadows.medium,
++    marginBottom: spacing.xl,
++    borderRadius: borderRadius.xl,
++    padding: spacing.lg,
++    ...shadows.large,
+   },
+   visaCardContent: {
+     flexDirection: 'row',
+@@ -531,10 +539,16 @@ const styles = StyleSheet.create({
+     justifyContent: 'space-between',
+     alignItems: 'center',
+     paddingHorizontal: spacing.md,
+-    marginBottom: spacing.sm,
++    marginTop: spacing.sm,
++    marginBottom: spacing.md,
+   },
+-  sectionTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
+-  seeAll: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.primary },
++  sectionTitle: {
++    fontSize: typography.sizes.lg,
++    fontWeight: '800',
++    color: colors.charcoal,
++    letterSpacing: 0.1,
++  },
++  seeAll: { fontSize: typography.sizes.sm, fontWeight: '700', color: colors.primary },
+ 
+   // Category
+   catRow: { paddingHorizontal: spacing.md, gap: spacing.lg, paddingBottom: spacing.md },
+@@ -673,8 +687,10 @@ const styles = StyleSheet.create({
+   placeCard: {
+     width: 160,
+     backgroundColor: colors.white,
+-    borderRadius: borderRadius.lg,
++    borderRadius: borderRadius.xl,
+     overflow: 'hidden',
++    borderWidth: 1,
++    borderColor: colors.pearl,
+     ...shadows.sm,
+   },
+   placeImg: { width: '100%', height: 110, backgroundColor: colors.pearl },
