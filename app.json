@@ -26,7 +26,7 @@
       "output": "single"
     },
     "experiments": {
-      "baseUrl": "/Explore-Saudi"
+      "baseUrl": "/-Explore-Saudi"
     },
     "plugins": [
       "expo-font",
