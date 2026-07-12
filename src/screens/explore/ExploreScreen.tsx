@@ -172,9 +172,15 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.white },
 
   // Header
-  header: { paddingHorizontal: spacing.md, paddingTop: spacing.sm, paddingBottom: spacing.xs },
+  header: {
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.pearl,
+  },
   title: { fontSize: typography.sizes.xxl, fontWeight: '800', color: colors.charcoal },
-  subtitle: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 2 },
+  subtitle: { fontSize: typography.sizes.sm, color: colors.slate, marginTop: 4 },
 
   // Search row
   searchRow: {
@@ -193,6 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
+    ...shadows.sm,
   },
   filterIconText: { fontSize: 18 },
 
@@ -214,6 +221,7 @@ const styles = StyleSheet.create({
   filterPillActive: {
     backgroundColor: colors.primary,
     borderColor: colors.primary,
+    ...shadows.sm,
   },
   filterPillText: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
   filterPillTextActive: { color: colors.white },
@@ -227,6 +235,8 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.xl,
     overflow: 'hidden',
     backgroundColor: colors.pearl,
+    borderWidth: 1,
+    borderColor: colors.pearl,
     ...shadows.md,
   },
   heartBtn: {
