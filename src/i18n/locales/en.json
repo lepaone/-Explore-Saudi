@@ -1,0 +1,53 @@
+{
+  "common": {
+    "seeAll": "See All",
+    "freeEntry": "Free Entry",
+    "traveler": "Traveler"
+  },
+  "tabs": {
+    "home": "Home",
+    "explore": "Explore",
+    "wallet": "Wallet",
+    "services": "Services",
+    "profile": "Profile"
+  },
+  "home": {
+    "greeting": "Hi, {{name}}! 👋",
+    "subGreeting": "Where do you want to go?",
+    "searchPlaceholder": "Search destinations, cities...",
+    "visaBadge": "🛂 Tourist Visa",
+    "visaTitle": "Visa & Travel Package",
+    "visaDesc": "Tourist Visa + Hotel + Flight from SAR 2,499",
+    "visaBtn": "Apply Now →",
+    "featuredExperiences": "Featured Experiences",
+    "featuredBadge": "⭐ Featured",
+    "category": "Category",
+    "recommended": "Recommended",
+    "topHotels": "Top Hotels",
+    "categories": {
+      "hotels": "Hotels",
+      "heritage": "Heritage",
+      "nature": "Nature",
+      "religious": "Religious",
+      "dining": "Dining",
+      "shopping": "Shopping"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "preferences": "Preferences",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Switch to dark theme",
+    "pushNotifications": "Push Notifications",
+    "pushNotificationsDesc": "Receive alerts and updates",
+    "about": "About",
+    "version": "Version",
+    "build": "Build",
+    "support": "Support",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "helpCenter": "Help Center",
+    "rateApp": "Rate the App"
+  }
+}

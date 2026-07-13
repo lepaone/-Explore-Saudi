@@ -1,0 +1,53 @@
+{
+  "common": {
+    "seeAll": "عرض الكل",
+    "freeEntry": "دخول مجاني",
+    "traveler": "المسافر"
+  },
+  "tabs": {
+    "home": "الرئيسية",
+    "explore": "استكشف",
+    "wallet": "المحفظة",
+    "services": "الخدمات",
+    "profile": "الملف الشخصي"
+  },
+  "home": {
+    "greeting": "مرحباً، {{name}}! 👋",
+    "subGreeting": "إلى أين تريد الذهاب؟",
+    "searchPlaceholder": "ابحث عن وجهات، مدن...",
+    "visaBadge": "🛂 تأشيرة سياحية",
+    "visaTitle": "التأشيرة وباقة السفر",
+    "visaDesc": "تأشيرة سياحية + فندق + رحلة طيران بدءاً من 2,499 ريال",
+    "visaBtn": "قدّم الآن →",
+    "featuredExperiences": "تجارب مميزة",
+    "featuredBadge": "⭐ مميز",
+    "category": "الفئات",
+    "recommended": "موصى به",
+    "topHotels": "أفضل الفنادق",
+    "categories": {
+      "hotels": "فنادق",
+      "heritage": "تراث",
+      "nature": "طبيعة",
+      "religious": "ديني",
+      "dining": "مطاعم",
+      "shopping": "تسوق"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "preferences": "التفضيلات",
+    "darkMode": "الوضع الداكن",
+    "darkModeDesc": "التبديل إلى المظهر الداكن",
+    "pushNotifications": "الإشعارات",
+    "pushNotificationsDesc": "تلقي التنبيهات والتحديثات",
+    "about": "حول التطبيق",
+    "version": "الإصدار",
+    "build": "البناء",
+    "support": "الدعم",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "helpCenter": "مركز المساعدة",
+    "rateApp": "قيّم التطبيق"
+  }
+}

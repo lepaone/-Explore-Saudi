@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import i18n from '../i18n';
 
 interface SettingsState {
   language: 'en' | 'ar';
@@ -15,6 +16,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   notifications: true,
 
   setLanguage: (language: 'en' | 'ar') => {
+    i18n.changeLanguage(language);
     set({ language });
   },
 
