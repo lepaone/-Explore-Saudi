@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { colors, typography, spacing, borderRadius, shadows } from '../../constants/theme';
 import { SCREEN_WIDTH } from '../../constants/layout';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -25,42 +26,42 @@ const CATS = [
   {
     id: '1',
     icon: '🏨',
-    label: 'Hotels',
+    labelKey: 'home.categories.hotels',
     tab: 'ExploreTab',
     route: 'Accommodation' as string | undefined,
   },
   {
     id: '2',
     icon: '🏛️',
-    label: 'Heritage',
+    labelKey: 'home.categories.heritage',
     tab: 'ExploreTab',
     route: undefined as string | undefined,
   },
   {
     id: '3',
     icon: '🌿',
-    label: 'Nature',
+    labelKey: 'home.categories.nature',
     tab: 'ExploreTab',
     route: undefined as string | undefined,
   },
   {
     id: '4',
     icon: '🕌',
-    label: 'Religious',
+    labelKey: 'home.categories.religious',
     tab: 'ExploreTab',
     route: undefined as string | undefined,
   },
   {
     id: '5',
     icon: '🍽️',
-    label: 'Dining',
+    labelKey: 'home.categories.dining',
     tab: 'ExploreTab',
     route: 'Dining' as string | undefined,
   },
   {
     id: '6',
     icon: '🛍️',
-    label: 'Shopping',
+    labelKey: 'home.categories.shopping',
     tab: 'ExploreTab',
     route: 'Shopping' as string | undefined,
   },
@@ -70,6 +71,7 @@ const FEATURED_CARD_WIDTH = SCREEN_WIDTH - spacing.md * 2;
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const login = useAuthStore((s) => s.login);
 
@@ -127,8 +129,10 @@ export default function HomeScreen() {
         {/* ── Header ──────────────────────────────────────────────────── */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
-            <Text style={styles.greeting}>Hi, {user?.name?.split(' ')[0] ?? 'Traveler'}! 👋</Text>
-            <Text style={styles.subGreeting}>Where do you want to go?</Text>
+            <Text style={styles.greeting}>
+              {t('home.greeting', { name: user?.name?.split(' ')[0] ?? t('common.traveler') })}
+            </Text>
+            <Text style={styles.subGreeting}>{t('home.subGreeting')}</Text>
           </View>
           <View style={styles.headerRight}>
             <TouchableOpacity
@@ -151,7 +155,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate('Search')}
         >
           <Text style={styles.searchIcon}>🔍</Text>
-          <Text style={styles.searchPlaceholder}>Search destinations, cities...</Text>
+          <Text style={styles.searchPlaceholder}>{t('home.searchPlaceholder')}</Text>
           <View style={styles.searchFilterBtn}>
             <Text style={styles.searchFilterIcon}>⚙️</Text>
           </View>
@@ -170,13 +174,11 @@ export default function HomeScreen() {
           >
             <View style={styles.visaCardContent}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.visaCardBadge}>🛂 Tourist Visa</Text>
-                <Text style={styles.visaCardTitle}>Visa & Travel Package</Text>
-                <Text style={styles.visaCardDesc}>
-                  Tourist Visa + Hotel + Flight from SAR 2,499
-                </Text>
+                <Text style={styles.visaCardBadge}>{t('home.visaBadge')}</Text>
+                <Text style={styles.visaCardTitle}>{t('home.visaTitle')}</Text>
+                <Text style={styles.visaCardDesc}>{t('home.visaDesc')}</Text>
                 <View style={styles.visaCardBtn}>
-                  <Text style={styles.visaCardBtnText}>Apply Now →</Text>
+                  <Text style={styles.visaCardBtnText}>{t('home.visaBtn')}</Text>
                 </View>
               </View>
               <Text style={styles.visaCardEmoji}>✈️</Text>
@@ -186,9 +188,9 @@ export default function HomeScreen() {
 
         {/* ── Featured Experiences (Horizontal Scroll) ────────────────── */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Featured Experiences</Text>
+          <Text style={styles.sectionTitle}>{t('home.featuredExperiences')}</Text>
           <TouchableOpacity onPress={() => navigation.getParent()?.navigate('ExploreTab')}>
-            <Text style={styles.seeAll}>See All</Text>
+            <Text style={styles.seeAll}>{t('common.seeAll')}</Text>
           </TouchableOpacity>
         </View>
         <FlatList
@@ -225,7 +227,7 @@ export default function HomeScreen() {
                 style={styles.featuredOverlay}
               >
                 <View style={styles.featuredBadge}>
-                  <Text style={styles.featuredBadgeText}>⭐ Featured</Text>
+                  <Text style={styles.featuredBadgeText}>{t('home.featuredBadge')}</Text>
                 </View>
                 <Text style={styles.featuredName} numberOfLines={2}>
                   {item.name}
@@ -233,7 +235,7 @@ export default function HomeScreen() {
                 <View style={styles.featuredMeta}>
                   <Text style={styles.featuredCity}>📍 {item.city}</Text>
                   <Text style={styles.featuredPrice}>
-                    {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
+                    {item.price === 0 ? t('common.freeEntry') : `SAR ${item.price}`}
                   </Text>
                 </View>
               </LinearGradient>
@@ -249,9 +251,9 @@ export default function HomeScreen() {
 
         {/* ── Category Row ────────────────────────────────────────────── */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Category</Text>
+          <Text style={styles.sectionTitle}>{t('home.category')}</Text>
           <TouchableOpacity onPress={() => navigation.getParent()?.navigate('ExploreTab')}>
-            <Text style={styles.seeAll}>See All</Text>
+            <Text style={styles.seeAll}>{t('common.seeAll')}</Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -271,16 +273,16 @@ export default function HomeScreen() {
               <View style={styles.catCircle}>
                 <Text style={styles.catIcon}>{cat.icon}</Text>
               </View>
-              <Text style={styles.catLabel}>{cat.label}</Text>
+              <Text style={styles.catLabel}>{t(cat.labelKey)}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
 
         {/* ── Recommended ─────────────────────────────────────────────── */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Recommended</Text>
+          <Text style={styles.sectionTitle}>{t('home.recommended')}</Text>
           <TouchableOpacity onPress={() => navigation.getParent()?.navigate('ExploreTab')}>
-            <Text style={styles.seeAll}>See All</Text>
+            <Text style={styles.seeAll}>{t('common.seeAll')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.recGrid}>
@@ -309,7 +311,7 @@ export default function HomeScreen() {
                     {item.name}
                   </Text>
                   <Text style={styles.recCardPrice}>
-                    {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
+                    {item.price === 0 ? t('common.freeEntry') : `SAR ${item.price}`}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -341,7 +343,7 @@ export default function HomeScreen() {
                     {item.name}
                   </Text>
                   <Text style={styles.recCardPrice}>
-                    {item.price === 0 ? 'Free Entry' : `SAR ${item.price}`}
+                    {item.price === 0 ? t('common.freeEntry') : `SAR ${item.price}`}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -351,9 +353,9 @@ export default function HomeScreen() {
 
         {/* ── Top Hotels ─────────────────────────────────────────────── */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Top Hotels</Text>
+          <Text style={styles.sectionTitle}>{t('home.topHotels')}</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Accommodation')}>
-            <Text style={styles.seeAll}>See All</Text>
+            <Text style={styles.seeAll}>{t('common.seeAll')}</Text>
           </TouchableOpacity>
         </View>
         <FlatList

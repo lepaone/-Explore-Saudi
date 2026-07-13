@@ -1,21 +1,23 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/common/Header';
 import { colors, typography, spacing, borderRadius } from '../../constants/theme';
 import { useSettingsStore } from '../../store/useSettingsStore';
 
 export default function SettingsScreen() {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const { language, theme, notifications, setLanguage, toggleTheme, toggleNotifications } =
     useSettingsStore();
 
   return (
     <View style={styles.container}>
-      <Header title="Settings" showBack onBack={() => navigation.goBack()} />
+      <Header title={t('settings.title')} showBack onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Language */}
-        <Text style={styles.sectionTitle}>Language</Text>
+        <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
         <View style={styles.langRow}>
           {(['en', 'ar'] as const).map((lang) => (
             <TouchableOpacity
@@ -31,11 +33,11 @@ export default function SettingsScreen() {
         </View>
 
         {/* Preferences */}
-        <Text style={styles.sectionTitle}>Preferences</Text>
+        <Text style={styles.sectionTitle}>{t('settings.preferences')}</Text>
         <View style={styles.settingRow}>
           <View>
-            <Text style={styles.settingLabel}>Dark Mode</Text>
-            <Text style={styles.settingDesc}>Switch to dark theme</Text>
+            <Text style={styles.settingLabel}>{t('settings.darkMode')}</Text>
+            <Text style={styles.settingDesc}>{t('settings.darkModeDesc')}</Text>
           </View>
           <Switch
             value={theme === 'dark'}
@@ -46,8 +48,8 @@ export default function SettingsScreen() {
         </View>
         <View style={styles.settingRow}>
           <View>
-            <Text style={styles.settingLabel}>Push Notifications</Text>
-            <Text style={styles.settingDesc}>Receive alerts and updates</Text>
+            <Text style={styles.settingLabel}>{t('settings.pushNotifications')}</Text>
+            <Text style={styles.settingDesc}>{t('settings.pushNotificationsDesc')}</Text>
           </View>
           <Switch
             value={notifications}
@@ -58,19 +60,26 @@ export default function SettingsScreen() {
         </View>
 
         {/* About */}
-        <Text style={styles.sectionTitle}>About</Text>
+        <Text style={styles.sectionTitle}>{t('settings.about')}</Text>
         <View style={styles.aboutRow}>
-          <Text style={styles.aboutLabel}>Version</Text>
+          <Text style={styles.aboutLabel}>{t('settings.version')}</Text>
           <Text style={styles.aboutValue}>1.0.0</Text>
         </View>
         <View style={styles.aboutRow}>
-          <Text style={styles.aboutLabel}>Build</Text>
+          <Text style={styles.aboutLabel}>{t('settings.build')}</Text>
           <Text style={styles.aboutValue}>2026.04.05</Text>
         </View>
 
         {/* Links */}
-        <Text style={styles.sectionTitle}>Support</Text>
-        {['Privacy Policy', 'Terms of Service', 'Help Center', 'Rate the App'].map((item) => (
+        <Text style={styles.sectionTitle}>{t('settings.support')}</Text>
+        {(
+          [
+            t('settings.privacyPolicy'),
+            t('settings.termsOfService'),
+            t('settings.helpCenter'),
+            t('settings.rateApp'),
+          ] as const
+        ).map((item) => (
           <TouchableOpacity key={item} style={styles.linkRow}>
             <Text style={styles.linkText}>{item}</Text>
             <Text style={styles.linkArrow}>{'\u203A'}</Text>
