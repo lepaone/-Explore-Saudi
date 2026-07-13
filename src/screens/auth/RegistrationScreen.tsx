@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   backBtn: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
   backIcon: { fontSize: 30, color: colors.charcoal, lineHeight: 34 },
-  headerTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
+  headerTitle: { fontSize: typography.sizes.lg, fontWeight: '800', color: colors.charcoal },
 
   stepRow: {
     flexDirection: 'row',

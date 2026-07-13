@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  ViewStyle,
-  StyleProp,
-} from 'react-native';
+import { TouchableOpacity, View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { gradients, borderRadius, shadows, spacing } from '../../constants/theme';
 
@@ -22,7 +16,11 @@ const GradientCard: React.FC<GradientCardProps> = ({
   style,
   onPress,
 }) => {
-  const gradientColors = (colorsProp ?? [...gradients.goldGradient]) as [string, string, ...string[]];
+  const gradientColors = (colorsProp ?? [...gradients.goldGradient]) as [
+    string,
+    string,
+    ...string[],
+  ];
 
   const content = (
     <LinearGradient
@@ -37,11 +35,7 @@ const GradientCard: React.FC<GradientCardProps> = ({
 
   if (onPress) {
     return (
-      <TouchableOpacity
-        onPress={onPress}
-        activeOpacity={0.85}
-        style={styles.touchable}
-      >
+      <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={styles.touchable}>
         {content}
       </TouchableOpacity>
     );
@@ -52,12 +46,12 @@ const GradientCard: React.FC<GradientCardProps> = ({
 
 const styles = StyleSheet.create({
   touchable: {
-    borderRadius: borderRadius.lg,
+    borderRadius: borderRadius.xl,
     ...shadows.medium,
     overflow: 'hidden',
   },
   gradient: {
-    borderRadius: borderRadius.lg,
+    borderRadius: borderRadius.xl,
     padding: spacing.md,
     overflow: 'hidden',
   },

@@ -1,12 +1,6 @@
 import React, { useState, useRef } from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  Animated,
-} from 'react-native';
-import { colors, typography, spacing, borderRadius } from '../../constants/theme';
+import { View, TextInput, Text, StyleSheet, Animated } from 'react-native';
+import { colors, typography, spacing, borderRadius, shadows } from '../../constants/theme';
 
 interface SearchBarProps {
   value: string;
@@ -82,10 +76,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.pearl,
+    backgroundColor: colors.white,
     borderRadius: borderRadius.full,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm + 2,
+    ...shadows.sm,
   },
   searchIcon: {
     fontSize: 16,

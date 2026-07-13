@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   },
   backBtn: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
   backIcon: { fontSize: 30, color: colors.charcoal, lineHeight: 34 },
-  headerTitle: { fontSize: typography.sizes.lg, fontWeight: '700', color: colors.charcoal },
+  headerTitle: { fontSize: typography.sizes.lg, fontWeight: '800', color: colors.charcoal },
   scroll: { padding: spacing.lg },
   avatarSection: { alignItems: 'center', marginBottom: spacing.lg },
   avatar: {
@@ -197,17 +197,19 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     alignItems: 'center',
     justifyContent: 'center',
+    ...shadows.md,
   },
   avatarText: { fontSize: 38, fontWeight: '800', color: colors.white },
   changePhotoBtn: { marginTop: spacing.sm },
   changePhotoText: { fontSize: typography.sizes.sm, color: colors.primary, fontWeight: '600' },
   formCard: {
     backgroundColor: colors.cream,
-    borderRadius: borderRadius.lg,
+    borderRadius: borderRadius.xl,
     padding: spacing.md,
     marginBottom: spacing.lg,
     borderWidth: 1,
     borderColor: colors.pearl,
+    ...shadows.sm,
   },
   infoRow: {
     flexDirection: 'row',
@@ -221,7 +223,12 @@ const styles = StyleSheet.create({
   },
   infoLabel: { fontSize: typography.sizes.sm, color: colors.slate },
   infoValue: { fontSize: typography.sizes.sm, fontWeight: '600', color: colors.charcoal },
-  saveBtn: { borderRadius: borderRadius.lg, overflow: 'hidden', marginBottom: spacing.sm },
+  saveBtn: {
+    borderRadius: borderRadius.xl,
+    overflow: 'hidden',
+    marginBottom: spacing.sm,
+    ...shadows.md,
+  },
   saveBtnGrad: { paddingVertical: 15, alignItems: 'center' },
   saveBtnText: {
     fontSize: typography.sizes.md,

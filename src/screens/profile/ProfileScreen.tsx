@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { colors, typography, spacing, borderRadius } from '../../constants/theme';
+import { colors, typography, spacing, borderRadius, shadows } from '../../constants/theme';
 import { useAuthStore } from '../../store/useAuthStore';
 
 const MENU_ITEMS = [
@@ -109,11 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: 42,
     alignItems: 'center',
     justifyContent: 'center',
+    ...shadows.md,
   },
   avatarText: { fontSize: 34, fontWeight: '800', color: colors.white },
   name: {
     fontSize: typography.sizes.xl,
-    fontWeight: '700',
+    fontWeight: '800',
     color: colors.charcoal,
     marginTop: spacing.md,
   },
@@ -131,15 +132,18 @@ const styles = StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     marginTop: spacing.lg,
-    backgroundColor: colors.pearl,
-    borderRadius: borderRadius.lg,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.xl,
+    borderWidth: 1,
+    borderColor: colors.pearl,
     padding: spacing.md,
     width: '100%',
+    ...shadows.sm,
   },
   stat: { flex: 1, alignItems: 'center' },
   statNum: { fontSize: typography.sizes.xl, fontWeight: '700', color: colors.charcoal },
   statLabel: { fontSize: typography.sizes.xs, color: colors.slate, marginTop: 2 },
-  statDivider: { width: 1, backgroundColor: colors.white, marginHorizontal: spacing.sm },
+  statDivider: { width: 1, backgroundColor: colors.pearl, marginHorizontal: spacing.sm },
   registerLink: {
     marginHorizontal: spacing.md,
     marginBottom: spacing.sm,

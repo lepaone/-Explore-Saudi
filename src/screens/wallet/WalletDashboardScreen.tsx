@@ -3,7 +3,14 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import GradientCard from '../../components/common/GradientCard';
-import { colors, gradients, typography, spacing, borderRadius } from '../../constants/theme';
+import {
+  colors,
+  gradients,
+  typography,
+  spacing,
+  borderRadius,
+  shadows,
+} from '../../constants/theme';
 import { useWalletStore } from '../../store/useWalletStore';
 import { formatCurrency, getTimeAgo } from '../../utils/formatters';
 
@@ -118,8 +125,12 @@ export default function WalletDashboardScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.white },
   balanceCard: { margin: spacing.md, padding: spacing.xl, alignItems: 'center' },
-  balanceLabel: { fontSize: typography.sizes.sm, color: 'rgba(255,255,255,0.7)' },
-  balanceAmount: { fontSize: 40, fontWeight: '700', color: colors.white, marginTop: spacing.xs },
+  balanceLabel: {
+    fontSize: typography.sizes.sm,
+    color: 'rgba(255,255,255,0.7)',
+    letterSpacing: 0.3,
+  },
+  balanceAmount: { fontSize: 40, fontWeight: '800', color: colors.white, marginTop: spacing.xs },
   balanceActions: { flexDirection: 'row', gap: spacing.xl, marginTop: spacing.lg },
   balanceBtn: { alignItems: 'center' },
   balanceBtnIcon: {
@@ -128,6 +139,8 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 24,
     backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.25)',
     textAlign: 'center',
     lineHeight: 48,
     overflow: 'hidden',
@@ -144,16 +157,27 @@ const styles = StyleSheet.create({
     width: '30%',
     alignItems: 'center',
     paddingVertical: spacing.md,
-    backgroundColor: colors.pearl,
-    borderRadius: borderRadius.lg,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.xl,
+    borderWidth: 1,
+    borderColor: colors.pearl,
+    ...shadows.sm,
   },
-  actionIconWrap: { marginBottom: spacing.xs },
-  actionIcon: { fontSize: 28 },
+  actionIconWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.pearl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.xs,
+  },
+  actionIcon: { fontSize: 22 },
   actionLabel: { fontSize: typography.sizes.sm, color: colors.charcoal, fontWeight: '500' },
   section: { paddingHorizontal: spacing.md, marginTop: spacing.lg },
   sectionTitle: {
     fontSize: typography.sizes.lg,
-    fontWeight: '700',
+    fontWeight: '800',
     color: colors.charcoal,
     marginBottom: spacing.md,
   },
@@ -167,8 +191,10 @@ const styles = StyleSheet.create({
   txnIconWrap: {
     width: 40,
     height: 40,
-    borderRadius: 12,
+    borderRadius: 20,
     backgroundColor: colors.pearl,
+    borderWidth: 1,
+    borderColor: colors.pearl,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: spacing.sm,
